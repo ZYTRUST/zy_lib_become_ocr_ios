@@ -7,8 +7,8 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'zy-lib-become-ocr-ios'
-  s.version          = '1.1.6'
+  s.name             = 'zy_lib_become_ocr_ios'
+  s.version          = '1.1.7'
   s.summary          = 'A short description of zy-lib-become-ocr-ios.'
 
 # This description is used to generate tags and improve search results.
@@ -25,15 +25,15 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Edwin Sanchez' => 'esanchez@zytrust.com' }
-  s.source           = { :git => 'https://github.com/Edwin Sanchez/zy-lib-become-ocr-ios.git', :tag => "1.1.6" }
+  s.source           = { :git => 'https://github.com/ZYTRUST/zy_lib_become_ocr_ios.git', :tag => "1.1.7" }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '12.0'
 
-  s.source_files = 'zy-lib-become-ocr-ios/Classes/**/*'
+  s.source_files = 'zy_lib_become_ocr_ios/Classes/**/*'
   
   s.resource_bundles = {
-     'zy-lib-become-ocr-ios' => ['zy-lib-become-ocr-ios/Assets/*.{png,storyboard,plist}']
+     'zy_lib_become_ocr_ios' => ['zy_lib_become_ocr_ios/Assets/*.{png,storyboard,plist}']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
