@@ -1,0 +1,39 @@
+PODS:
+  - Alamofire (4.8.2)
+  - BecomeSDK (1.1.0)
+  - PPBlinkID (5.16.1)
+  - zy_lib_become_ocr_ios (2.1.0):
+    - Alamofire (~> 4.8.2)
+    - BecomeSDK (~> 1.1.0)
+    - PPBlinkID (~> 5.16.1)
+
+DEPENDENCIES:
+  - BecomeSDK (from `https://github.com/ZYTRUST/BecomeSDK.git`, tag `1.1.0`)
+  - zy_lib_become_ocr_ios (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - PPBlinkID
+
+EXTERNAL SOURCES:
+  BecomeSDK:
+    :git: https://github.com/ZYTRUST/BecomeSDK.git
+    :tag: 1.1.0
+  zy_lib_become_ocr_ios:
+    :path: "../"
+
+CHECKOUT OPTIONS:
+  BecomeSDK:
+    :git: https://github.com/ZYTRUST/BecomeSDK.git
+    :tag: 1.1.0
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  BecomeSDK: e558bdc9ec6fe0ae22f9a3883b8302bc6fc324b5
+  PPBlinkID: 4e0a89f22e6e03849fef5b69f20dbf94c07b00b4
+  zy_lib_become_ocr_ios: ac0d52415ef0b600bd52c047543a9b3abbb32135
+
+PODFILE CHECKSUM: 2ac44ecbff58d1285effddcf3639144ec884461e
+
+COCOAPODS: 1.11.2
