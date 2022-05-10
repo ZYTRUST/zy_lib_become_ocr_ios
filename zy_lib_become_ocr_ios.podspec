@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'zy_lib_become_ocr_ios'
-  s.version          = '2.1.0'
+  s.version          = '2.1.1'
   s.summary          = 'A short description of zy_lib_become_ocr_ios.'
 
 # This description is used to generate tags and improve search results.
@@ -25,18 +25,19 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ZYTRUST SA' => 'ztmobile@zytrust.com' }
-  s.source           = { :git => 'https://github.com/ZYTRUST/zy_lib_become_ocr_ios.git', :tag => "2.1.0" }
+  s.source           = { :git => 'https://github.com/ZYTRUST/zy_lib_become_ocr_ios.git', :tag => "2.1.1" }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '12.0'
 
   s.source_files = 'zy_lib_become_ocr_ios/Classes/**/*'
-  
+  s.public_header_files = "zy_lib_become_ocr_ios.framework/Headers/*.h"
+
   # s.resource_bundles = {
   #   'zy_lib_become_ocr_ios' => ['zy_lib_become_ocr_ios/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+   s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'PPBlinkID', '~> 5.16.1'
