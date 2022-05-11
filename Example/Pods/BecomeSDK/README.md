@@ -1,2 +1,0 @@
-# BecomeSDK
-BecomeSDK
