@@ -1,0 +1,34 @@
+{
+  "name": "zy_lib_become_ocr_ios",
+  "version": "2.1.0",
+  "summary": "A short description of zy_lib_become_ocr_ios.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/ZYTRUST SA/zy_lib_become_ocr_ios",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ZYTRUST SA": "ztmobile@zytrust.com"
+  },
+  "source": {
+    "git": "hhttps://github.com/ZYTRUST SA/zy_lib_become_ocr_ios.git",
+    "tag": "2.1.0"
+  },
+  "platforms": {
+    "ios": "12.0"
+  },
+  "source_files": "zy_lib_become_ocr_ios/Classes/**/*",
+  "public_header_files": "zy_lib_become_ocr_ios.framework/Headers/*.h",
+  "dependencies": {
+    "PPBlinkID": [
+      "~> 5.16.1"
+    ],
+    "Alamofire": [
+      "~> 4.8.2"
+    ],
+    "BecomeSDK": [
+      "~> 1.1.0"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "BecomeSDK",
+  "version": "1.1.0",
+  "summary": "App Become para validación biométrica de identidad en el sistema iOS..",
+  "description": "App Become para validación biométrica de identidad en el sistema iOS.",
+  "homepage": "https://github.com/Becomedigital/become_IOS_SDK",
+  "license": {
+    "type": "Copyright",
+    "text": "Copyright by BecomeDigital"
+  },
+  "authors": "Becomedigital",
+  "platforms": {
+    "ios": "12.0"
+  },
+  "source": {
+    "git": "https://github.com/Becomedigital/become_IOS_SDK.git",
+    "tag": "1.1.0"
+  },
+  "source_files": [
+    "Classes",
+    "Classes/**/*.{h,m}"
+  ],
+  "exclude_files": "Classes/Exclude",
+  "requires_arc": true,
+  "vendored_frameworks": "BecomeDigitalV.framework"
+}
