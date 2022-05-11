@@ -12,13 +12,14 @@
     "ZYTRUST SA": "ztmobile@zytrust.com"
   },
   "source": {
-    "git": "https://github.com/ZYTRUST SA/zy_lib_become_ocr_ios.git",
+    "git": "hhttps://github.com/ZYTRUST SA/zy_lib_become_ocr_ios.git",
     "tag": "2.1.0"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "12.0"
   },
   "source_files": "zy_lib_become_ocr_ios/Classes/**/*",
+  "public_header_files": "zy_lib_become_ocr_ios.framework/Headers/*.h",
   "dependencies": {
     "PPBlinkID": [
       "~> 5.16.1"

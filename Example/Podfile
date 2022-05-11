@@ -6,4 +6,5 @@ target 'zy_lib_become_ocr_ios_Example' do
   pod 'zy_lib_become_ocr_ios', :path => '../'
   pod 'BecomeSDK', :git => 'https://github.com/ZYTRUST/BecomeSDK.git', :tag => '1.1.0'
 
+  
 end

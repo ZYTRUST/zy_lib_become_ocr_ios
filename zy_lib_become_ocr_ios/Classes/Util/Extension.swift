@@ -72,7 +72,7 @@ extension UIViewController{
     class func displaySpinner(onView : UIView) -> UIView {
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
         ai.startAnimating()
         ai.center = spinnerView.center
 
@@ -149,14 +149,14 @@ extension UIImage {
     var jpegBase64: String? {
         //self.jpegData(compressionQuality: 1)?.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
         
-        let img = UIImageJPEGRepresentation(self,1)! as Data
+        let img = self.jpegData(compressionQuality: 1)! as Data
         return img.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
     }
     
     var pngBase64: String? {
         //self.jpegData(compressionQuality: 1)?.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
         
-        let img = UIImagePNGRepresentation(self)! as Data
+        let img = self.pngData()! as Data
         return img.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
     }
 }
