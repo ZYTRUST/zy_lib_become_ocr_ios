@@ -6,8 +6,11 @@
 // 
 
 import Foundation
+#if !targetEnvironment(simulator)
 import BecomeDigitalV
+#endif
 
+#if !targetEnvironment(simulator)
 class ZyBecomeOcr: UIViewController, BDIVDelegate {
     
     private var vc: UIViewController!
@@ -58,6 +61,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         BDIVCallBack.sharedInstance.register(bdivConfig: bdivConfig)
     }
 
+#if !targetEnvironment(simulator)
     public  func BDIVResponseSuccess(bdivResult: AnyObject) {
         let responseIV = bdivResult as! ResponseIV
         
@@ -104,6 +108,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         
         callback(.success(response))
     }
+    #endif
     
     public  func BDIVResponseError(error: String) {
         let errorNoSpace = error.stringByRemovingAll(subStrings: [" "]).uppercased()
@@ -121,3 +126,4 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
     }
     
 }
+#endif

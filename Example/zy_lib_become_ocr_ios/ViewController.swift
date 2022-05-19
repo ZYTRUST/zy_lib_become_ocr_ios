@@ -99,7 +99,8 @@ class ViewController: UIViewController {
         ocrRequest.token = token
         ocrRequest.userId = "3042"
         ocrRequest.fullFrontImage = image
-        
+#if !targetEnvironment(simulator)
+
         ocrBio.enviar(request: ocrRequest, zyOcrResponse: nil)
         { (result:(ZyOcrResult<ZyOcrResponse, ZyOcrError>)) in
             switch result {
@@ -111,6 +112,8 @@ class ViewController: UIViewController {
                     self.tvResult.text = error.deError
             }
         }
+        #endif
+        
         
     }
 

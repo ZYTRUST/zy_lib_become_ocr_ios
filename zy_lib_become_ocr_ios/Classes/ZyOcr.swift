@@ -1,17 +1,21 @@
 
 import Foundation
+#if !targetEnvironment(simulator)
 import BecomeDigitalV
+#endif
 
 public class ZyOcr {
     public typealias CallbackOcr = (ZyOcrResult<ZyOcrResponse, ZyOcrError>) -> Void
     private var vc: UIViewController
     private var validaAutenticidad:Bool
-    
+#if !targetEnvironment(simulator)
     private let apiOcr:ZyBecomeOcr
     var sv:UIView
+#endif
     
     public init(onView:UIViewController){
         self.vc = onView
+#if !targetEnvironment(simulator)
         //let viewc = vc.view.window?.rootViewController
         apiOcr = ZyBecomeOcr()
         self.vc.present(apiOcr, animated: true,completion: {})
@@ -21,11 +25,18 @@ public class ZyOcr {
         self.validaAutenticidad = false
         
         self.sv = UIView.init()
+        #else
+        self.validaAutenticidad = false
+
+        #endif
+        
     }
+ 
+
     
     public func capturar(request:ZyOcrRequest,validarAutenticidad:Bool,
                          completion:@escaping CallbackOcr){
-        
+#if !targetEnvironment(simulator)
         guard let _ = request.userId,
               let _ = request.token,
               let _ = request.contractId else {
@@ -66,8 +77,14 @@ public class ZyOcr {
                                                  deError: error.descripcion)))
             }
         }
+        #else
+        completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.ERROR_NO_FUNCIONA_SIMULADOR.rawValue,
+                                   deError: ZyOcrErrorEnum.ERROR_NO_FUNCIONA_SIMULADOR.descripcion)))
+        #endif
+       
     }
     
+#if !targetEnvironment(simulator)
     public func enviar(request:ZyOcrRequest,zyOcrResponse:ZyOcrResponse?,
                        completion:@escaping CallbackOcr){
         
@@ -105,4 +122,5 @@ public class ZyOcr {
             }
         }
     }
+    #endif
 }

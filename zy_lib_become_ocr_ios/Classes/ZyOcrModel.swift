@@ -121,7 +121,8 @@ enum ZyOcrErrorEnum:Int {
     case ERROR_TIMEOUT = 9116
     case ERROR_BAD_CAPTURE = 9118
     case PARAMETROS_INCOMPLETOS = 9200
-    
+    case ERROR_NO_FUNCIONA_SIMULADOR = 22007
+
     
     var descripcion:String {
         switch self {
@@ -147,6 +148,8 @@ enum ZyOcrErrorEnum:Int {
                 return "\(self.rawValue):Captura insatisfactoria"
             case .PARAMETROS_INCOMPLETOS:
                 return "\(self.rawValue):Uno o mas parametros incorrectos"
+            case .ERROR_NO_FUNCIONA_SIMULADOR:
+            return "\(self.rawValue):Libreria no corre en simulador"
             default:
                 return ""
         }
