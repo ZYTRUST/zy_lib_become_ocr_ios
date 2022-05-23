@@ -59,8 +59,9 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         
         BDIVCallBack.sharedInstance.delegate = self
         BDIVCallBack.sharedInstance.register(bdivConfig: bdivConfig)
+        
     }
-
+    
 #if !targetEnvironment(simulator)
     public  func BDIVResponseSuccess(bdivResult: AnyObject) {
         let responseIV = bdivResult as! ResponseIV
@@ -89,14 +90,15 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         }
         else{
             let validacion = responseIV.documentValidation
-            if let quality_score = validacion["quality_score"] as? String {
-                zyBecomeOcr.qualityScore = quality_score
+            if let quality_score = validacion["quality_score"] as? Double {
+                zyBecomeOcr.qualityScore = String(format: "%f", quality_score)
+                
             }
-            if let liveness_score = validacion["liveness_score"] as? String {
-                zyBecomeOcr.livenessScore = liveness_score
+            if let liveness_score = validacion["liveness_score"] as? Double {
+                zyBecomeOcr.livenessScore = String(format: "%f", liveness_score)
             }
-            if let liveness_probability = validacion["liveness_probability"] as? String {
-                zyBecomeOcr.livenessProbability = liveness_probability
+            if let liveness_probability = validacion["liveness_probability"] as? Double {
+                zyBecomeOcr.livenessProbability = String(format: "%f", liveness_probability)
             }
             if let status_code = validacion["status_code"] as? String {
                 zyBecomeOcr.statusCode = status_code
@@ -108,7 +110,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         
         callback(.success(response))
     }
-    #endif
+#endif
     
     public  func BDIVResponseError(error: String) {
         let errorNoSpace = error.stringByRemovingAll(subStrings: [" "]).uppercased()
@@ -119,6 +121,9 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             callback(.error(.CAPTURA_CANCELADA))
         }
         else if errorNoSpace == "INCORRECTSDKCONFIGURATION" {
+            callback(.error(.INICIALIZACION_ERROR))
+        }
+        else if errorNoSpace == "TOKENHASEXPIRED" {
             callback(.error(.INICIALIZACION_ERROR))
         }
         callback(.error(.INICIALIZACION_ERROR))

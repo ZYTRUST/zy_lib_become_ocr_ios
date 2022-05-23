@@ -25,14 +25,14 @@ public class ZyOcr {
         self.validaAutenticidad = false
         
         self.sv = UIView.init()
-        #else
+#else
         self.validaAutenticidad = false
-
-        #endif
+        
+#endif
         
     }
- 
-
+    
+    
     
     public func capturar(request:ZyOcrRequest,validarAutenticidad:Bool,
                          completion:@escaping CallbackOcr){
@@ -42,7 +42,7 @@ public class ZyOcr {
               let _ = request.contractId else {
             
             completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS.rawValue,
-                                       deError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS.descripcion)))
+                                         deError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS.descripcion)))
             return;
         }
         
@@ -58,30 +58,32 @@ public class ZyOcr {
             if(request.allowLibraryLoading){
                 UIViewController.removeSpinner(spinner: self.sv)
             }
-
+            
             switch result {
-                case .success(let response):
+            case .success(let response):
                 if validarAutenticidad{
                     var secondRequest = request
                     secondRequest.fullFrontImage = response.zyBecomeOcr.fullFronImage!
                     self.enviar(request:secondRequest ,zyOcrResponse:response ,completion:completion)
+                    
+                    
                 }else{
                     self.vc.dismiss(animated: false)
                     completion(.success(response))
                 }
-                 
                 
-                case .error(let error):
-                    self.vc.dismiss(animated: false)
-                    completion(.error(ZyOcrError(coError: error.rawValue,
-                                                 deError: error.descripcion)))
+                
+            case .error(let error):
+                self.vc.dismiss(animated: false)
+                completion(.error(ZyOcrError(coError: error.rawValue,
+                                             deError: error.descripcion)))
             }
         }
-        #else
+#else
         completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.ERROR_NO_FUNCIONA_SIMULADOR.rawValue,
-                                   deError: ZyOcrErrorEnum.ERROR_NO_FUNCIONA_SIMULADOR.descripcion)))
-        #endif
-       
+                                     deError: ZyOcrErrorEnum.ERROR_NO_FUNCIONA_SIMULADOR.descripcion)))
+#endif
+        
     }
     
 #if !targetEnvironment(simulator)
@@ -94,7 +96,7 @@ public class ZyOcr {
               let _ = request.contractId else {
             
             completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS.rawValue,
-                                       deError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS.descripcion)))
+                                         deError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS.descripcion)))
             return;
         }
         
@@ -102,25 +104,28 @@ public class ZyOcr {
             sv = UIViewController.displaySpinner(onView: vc.view)
         }
         
-       
         
-        apiOcr.enviarImagen(request: request, zyOcrResponse:zyOcrResponse)
-        { (result:(ZyOcrResult<ZyOcrResponse, ZyOcrErrorEnum>)) in
-            
-            if(request.allowLibraryLoading){
-                UIViewController.removeSpinner(spinner: self.sv)
-            }
-            switch result {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.apiOcr.enviarImagen(request: request, zyOcrResponse:zyOcrResponse)
+            { (result:(ZyOcrResult<ZyOcrResponse, ZyOcrErrorEnum>)) in
+                
+                if(request.allowLibraryLoading){
+                    UIViewController.removeSpinner(spinner: self.sv)
+                }
+                switch result {
                 case .success(let response):
                     self.vc.dismiss(animated: false)
                     completion(.success(response))
-                
+                    
                 case .error(let error):
                     self.vc.dismiss(animated: false)
                     completion(.error(ZyOcrError(coError: error.rawValue,
                                                  deError: error.descripcion)))
+                }
             }
         }
+        
     }
-    #endif
+    
+#endif
 }

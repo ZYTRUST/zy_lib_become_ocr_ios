@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		7F0896BE283BF16B00C10BAC /* Universal-zy_lib_become_ocr_ios */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7F0896C1283BF16B00C10BAC /* Build configuration list for PBXAggregateTarget "Universal-zy_lib_become_ocr_ios" */;
+			buildPhases = (
+				7F0896C2283BF16F00C10BAC /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Universal-zy_lib_become_ocr_ios";
+			productName = "Universal-zy_lib_become_ocr_ios";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -171,6 +185,11 @@
 						DevelopmentTeam = 23WN72KD4H;
 						LastSwiftMigration = 0900;
 					};
+					7F0896BE283BF16B00C10BAC = {
+						CreatedOnToolsVersion = 13.4;
+						DevelopmentTeam = 23WN72KD4H;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "zy_lib_become_ocr_ios" */;
@@ -188,6 +207,7 @@
 			projectRoot = "";
 			targets = (
 				607FACCF1AFB9204008FA782 /* zy_lib_become_ocr_ios_Example */,
+				7F0896BE283BF16B00C10BAC /* Universal-zy_lib_become_ocr_ios */,
 			);
 		};
 /* End PBXProject section */
@@ -230,6 +250,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-zy_lib_become_ocr_ios_Example/Pods-zy_lib_become_ocr_ios_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7F0896C2283BF16F00C10BAC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Setup some constants for use later on.\n# 1\n# Set bash script to exit immediately if any commands fail.\nset -e\n# 2\n# Setup some constants for use later on.\nPROJECT_NAME=\"Pods/Pods.xcodeproj\"\nPROJECT_LIB_NAME=\"zy_lib_become_ocr_ios\"\nFRAMEWORK_NAME=\"zy_lib_become_ocr_ios\"\nOUTPUT_DIR=\"${SRCROOT}/build\"\n# 3\n# If remnants from a previous build exist, delete them.\nif [ -d \"${OUTPUT_DIR}\" ]; then\nrm -rf \"${OUTPUT_DIR}\"\nfi\n# 4\n# Build the framework for device and for simulator (using\n# all needed architectures).\n\nxcodebuild -project \"${PROJECT_NAME}\" -scheme \"${PROJECT_LIB_NAME}\" -configuration Release -arch arm64  only_active_arch=no defines_module=yes -sdk \"iphoneos\" -derivedDataPath \"${OUTPUT_DIR}\"\n\nxcodebuild -project \"${PROJECT_NAME}\" -scheme \"${PROJECT_LIB_NAME}\" -configuration Release -arch x86_64  only_active_arch=no defines_module=yes -sdk \"iphonesimulator\"  -derivedDataPath \"${OUTPUT_DIR}\"\n\n# 5\n# Remove .framework file if exists from previous run.\nif [ -d \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework\" ]; then\nrm -rf \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework\"\nfi\n# 6\n# Copy the device version of framework.\ncp -r \"${OUTPUT_DIR}/Release-iphoneos/${PROJECT_LIB_NAME}/${FRAMEWORK_NAME}.framework\" \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework\"\n# 7\n# Replace the framework executable within the framework with\n# a new version created by merging the device and simulator\n# frameworks' executables with lipo.\nlipo -create -output \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${OUTPUT_DIR}/Release-iphoneos/${PROJECT_LIB_NAME}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${OUTPUT_DIR}/Release-iphonesimulator/${PROJECT_LIB_NAME}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\"\n# 8\n# Copy the Swift module mappings for the simulator into the\n# framework. The device mappings already exist from step 6.\ncp -r \"${OUTPUT_DIR}/Release-iphonesimulator/${PROJECT_LIB_NAME}/${FRAMEWORK_NAME}.framework/Modules/${FRAMEWORK_NAME}.swiftmodule/\" \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework/Modules/${FRAMEWORK_NAME}.swiftmodule\"\n# 9 \n# Convenience step to open the project's directory in Finder\nopen \"${OUTPUT_DIR}\"\n\n";
 		};
 		DBEDCD8089BAB33A0BE56AF2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -420,6 +457,24 @@
 			};
 			name = Release;
 		};
+		7F0896BF283BF16B00C10BAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 23WN72KD4H;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7F0896C0283BF16B00C10BAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 23WN72KD4H;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -437,6 +492,15 @@
 			buildConfigurations = (
 				607FACF01AFB9204008FA782 /* Debug */,
 				607FACF11AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F0896C1283BF16B00C10BAC /* Build configuration list for PBXAggregateTarget "Universal-zy_lib_become_ocr_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F0896BF283BF16B00C10BAC /* Debug */,
+				7F0896C0283BF16B00C10BAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
