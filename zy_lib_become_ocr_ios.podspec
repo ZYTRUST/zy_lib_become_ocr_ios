@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'zy_lib_become_ocr_ios'
-  s.version          = '6.0.6'
+  s.version          = '6.0.7'
   s.summary          = 'Libreria ZYTRUSTzy_lib_become_ocr_ios.'
 
 # This description is used to generate tags and improve search results.
@@ -27,7 +27,7 @@ captura de OCR
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ZYTRUST SA' => 'ztmobile@zytrust.com' }
 
-  s.source           = { :git => 'https://github.com/ZYTRUST/zy_lib_become_ocr_ios.git', :tag => s.version.to_s }
+  s.source = { :http => "https://github.com/ZYTRUST/zy_lib_become_ocr_ios/archive/refs/tags/6.0.7.tar.gz" }
 
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -35,7 +35,7 @@ captura de OCR
   #s.source_files = 'zy_lib_become_ocr_ios/Classes/**/*'
   
   
-  s.source_files = 'zy_lib_become_ocr_ios/Classes/**/*'
+  #s.source_files = 'zy_lib_become_ocr_ios/Classes/**/*'
   #s.public_header_files = "zy_lib_become_ocr_ios.framework/Headers/*.h"
   #s.vendored_frameworks = 'zy_lib_become_ocr_ios.framework'
   # s.resource_bundles = {
@@ -45,7 +45,7 @@ captura de OCR
   s.swift_version = '5.0'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'BecomeSDK'
+  #s.frameworks = 'BecomeSDK', :path => 'libraries/LocalPod/'
 
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'PPBlinkID', '~> 5.16.1'
