@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '12.0'
 
-  s.source_files = 'zy_lib_become_ocr_ios/Classes/**/*'
+  #s.source_files = 'zy_lib_become_ocr_ios/Classes/**/*'
   
   
   s.source_files = 'zy_lib_become_ocr_ios/Classes/**/*'
