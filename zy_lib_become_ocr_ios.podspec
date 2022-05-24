@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'zy_lib_become_ocr_ios'
-  s.version          = '5.0.9'
+  s.version          = '6.0.0'
   s.summary          = 'Libreria ZYTRUSTzy_lib_become_ocr_ios.'
 
 # This description is used to generate tags and improve search results.
@@ -39,7 +39,8 @@ captura de OCR
   # s.resource_bundles = {
   #   'zy_lib_become_ocr_ios' => ['zy_lib_become_ocr_ios/Assets/*.png']
   # }
-  
+  s.ios.vendored_frameworks = 'zy_lib_become_ocr_ios.framework'
+
   
   s.swift_version = '5.0'
 
