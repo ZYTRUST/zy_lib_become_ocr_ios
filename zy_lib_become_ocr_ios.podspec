@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'zy_lib_become_ocr_ios'
-  s.version          = '5.0.7'
+  s.version          = '5.0.8'
   s.summary          = 'Libreria ZYTRUSTzy_lib_become_ocr_ios.'
 
 # This description is used to generate tags and improve search results.
@@ -30,8 +30,6 @@ captura de OCR
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '12.0'
-
-  s.vendored_frameworks = 'zy_lib_become_ocr_ios.frameworks'
   #s.source_files = 'zy_lib_become_ocr_ios/Classes/**/*'
   
   
