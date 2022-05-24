@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'zy_lib_become_ocr_ios'
-  s.version          = '5.0.1'
+  s.version          = '5.0.2'
   s.summary          = 'A short description of zy_lib_become_ocr_ios.'
 
 # This description is used to generate tags and improve search results.
@@ -33,7 +33,7 @@ TODO: Add long description of the pod here.
   #s.source_files = 'zy_lib_become_ocr_ios/Classes/**/*'
   
   
-  s.source_files = 'zy_lib_become_ocr_ios/Classes/**/*'
+  #s.source_files = 'zy_lib_become_ocr_ios/Classes/**/*'
   s.public_header_files = "zy_lib_become_ocr_ios.framework/Headers/*.h"
   
   # s.resource_bundles = {
