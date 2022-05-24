@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'zy_lib_become_ocr_ios'
-  s.version          = '6.0.8'
+  s.version          = '6.0.9'
   s.summary          = 'Libreria ZYTRUSTzy_lib_become_ocr_ios.'
 
 # This description is used to generate tags and improve search results.
@@ -27,7 +27,7 @@ captura de OCR
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ZYTRUST SA' => 'ztmobile@zytrust.com' }
 
-  s.source = { :http => "https://github.com/ZYTRUST/zy_lib_become_ocr_ios/archive/refs/tags/6.0.7.tar.gz" }
+  s.source = { :http => "https://github.com/ZYTRUST/zy_lib_become_ocr_ios/archive/refs/tags/6.0.9.tar.gz" }
 
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
