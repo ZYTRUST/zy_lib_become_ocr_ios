@@ -27,7 +27,7 @@ captura de OCR
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ZYTRUST SA' => 'ztmobile@zytrust.com' }
   s.source           = { 
-           :http =>  'https://github.com/ZYTRUST/zy_lib_become_ocr_ios/releases/download/6.0.2/6.0.1-zy_lib_become_ocr_ios.tar.gz'
+           :http =>  'https://github.com/ZYTRUST/zy_lib_become_ocr_ios/archive/refs/tags/6.0.2.tar.gz'
   }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
