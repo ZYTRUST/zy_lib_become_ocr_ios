@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'zy_lib_become_ocr_ios'
-  s.version          = '5.0.8'
+  s.version          = '5.0.9'
   s.summary          = 'Libreria ZYTRUSTzy_lib_become_ocr_ios.'
 
 # This description is used to generate tags and improve search results.
