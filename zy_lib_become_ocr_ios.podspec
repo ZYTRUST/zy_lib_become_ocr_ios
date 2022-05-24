@@ -39,11 +39,8 @@ captura de OCR
   # s.resource_bundles = {
   #   'zy_lib_become_ocr_ios' => ['zy_lib_become_ocr_ios/Assets/*.png']
   # }
-  s.ios.vendored_frameworks = 'zy_lib_become_ocr_ios.framework'
-
+  s.ios.vendored_frameworks = "zy_lib_become_ocr_ios.framework"
   
-  s.swift_version = '5.0'
-
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
