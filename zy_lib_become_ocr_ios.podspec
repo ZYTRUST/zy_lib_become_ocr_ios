@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'zy_lib_become_ocr_ios'
-  s.version          = '6.0.0'
+  s.version          = '6.0.2'
   s.summary          = 'Libreria ZYTRUSTzy_lib_become_ocr_ios.'
 
 # This description is used to generate tags and improve search results.
@@ -26,7 +26,9 @@ captura de OCR
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ZYTRUST SA' => 'ztmobile@zytrust.com' }
-  s.source           = { :git => 'https://github.com/ZYTRUST/zy_lib_become_ocr_ios.git', :tag => s.version.to_s }
+  s.source           = { 
+           :http =>  'https://github.com/ZYTRUST/zy_lib_become_ocr_ios/releases/download/6.0.2/6.0.1-zy_lib_become_ocr_ios.tar.gz'
+  }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '12.0'
@@ -39,8 +41,10 @@ captura de OCR
   # s.resource_bundles = {
   #   'zy_lib_become_ocr_ios' => ['zy_lib_become_ocr_ios/Assets/*.png']
   # }
-  s.ios.vendored_frameworks = "zy_lib_become_ocr_ios.framework"
-  
+  s.ios.vendored_frameworks = 'zy_lib_become_ocr_ios.framework'
+  s.swift_version = '5.0'
+
+  s.ios.requires_arc = false
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
