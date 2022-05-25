@@ -80,6 +80,16 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             
             zyBecomeOcr.firstName = responseIV.firstName
             zyBecomeOcr.lastName = responseIV.lastName
+            
+            do{
+                let apellidos = responseIV.lastName.components(separatedBy: "\n")
+                zyBecomeOcr.apPaterno = apellidos[0]
+                zyBecomeOcr.apMaterno = apellidos[1]
+            }catch{
+                print("ZY:: no se pudo obtener los apellidos")
+            }
+           
+
             zyBecomeOcr.dateOfExpiry = responseIV.dateOfExpiry.stringByFormatter(format: self.request.formatoFecha)
             zyBecomeOcr.dateOfBirth = responseIV.dateOfBirth.stringByFormatter(format: self.request.formatoFecha)
             zyBecomeOcr.age = String(responseIV.age)
@@ -119,12 +129,15 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         //TOKENHASEXPIRED
         if errorNoSpace == "CANCELEDBYUSER"{
             callback(.error(.CAPTURA_CANCELADA))
+            return
         }
         else if errorNoSpace == "INCORRECTSDKCONFIGURATION" {
             callback(.error(.INICIALIZACION_ERROR))
+            return
         }
         else if errorNoSpace == "TOKENHASEXPIRED" {
             callback(.error(.INICIALIZACION_ERROR))
+            return
         }
         callback(.error(.INICIALIZACION_ERROR))
         

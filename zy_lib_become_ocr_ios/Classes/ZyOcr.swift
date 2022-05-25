@@ -80,8 +80,8 @@ public class ZyOcr {
             }
         }
 #else
-        completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.ERROR_NO_FUNCIONA_SIMULADOR.rawValue,
-                                     deError: ZyOcrErrorEnum.ERROR_NO_FUNCIONA_SIMULADOR.descripcion)))
+        completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.NO_SIMULADOR.rawValue,
+                                     deError: ZyOcrErrorEnum.NO_SIMULADOR.descripcion)))
 #endif
         
     }
