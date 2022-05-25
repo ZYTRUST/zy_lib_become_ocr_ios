@@ -82,14 +82,17 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.lastName = responseIV.lastName
             
             do{
-                let apellidos = responseIV.lastName.components(separatedBy: "\n")
-                let arrayNumber = apellidos.count
-                if (arrayNumber >= 0){
-                    zyBecomeOcr.apPaterno = try apellidos[0]
+                if (responseIV.lastName != nil && responseIV.lastName != ""){
+                    let apellidos = responseIV.lastName.components(separatedBy: "\n")
+                    let arrayNumber = apellidos.count
+                    if (arrayNumber >= 1){
+                        zyBecomeOcr.apPaterno = try? apellidos[0]
+                    }
+                    if (arrayNumber >= 2){
+                        zyBecomeOcr.apMaterno = try? apellidos[1]
+                    }
                 }
-                if (arrayNumber >= 1){
-                    zyBecomeOcr.apMaterno = try apellidos[1]
-                }
+            
                 
             } catch{
                 zyBecomeOcr.apPaterno = ""
