@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTM0NTMzMDEsIm5iZiI6MTY1MzQ1MzMwMSwianRpIjoiMDc4ODI4YTctMmM5Ni00N2RmLTlmM2UtN2UxNmMzOTU0NzVjIiwiZXhwIjoxNjUzNDU2OTAxLCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.62RjbQ5SLAFAQe--bSqs6qrCRPVgfH5VxUATlovG9Dc"
+    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTM0OTAyODQsIm5iZiI6MTY1MzQ5MDI4NCwianRpIjoiY2RmMTFlNjUtMjVhYi00MWY0LThkMjUtNDc5M2E4MGYwZWFmIiwiZXhwIjoxNjUzNDkzODg0LCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.MTT92gz4aQ8zPbceooxy4BngArBPt3vOHARe3f22YB8"
     
     func capturar(){
         
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         ocrRequest.contractId = "46"
         ocrRequest.token = token
         ocrRequest.userId = "3046"
-        ocrRequest.formatoFecha = "yyyy-MM-dd"
+        ocrRequest.formatoFecha = "dd/MM/yy"
         ocrRequest.allowLibraryLoading = true
         
         ocrBio.capturar(request: ocrRequest, validarAutenticidad: true)

@@ -83,13 +83,21 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             
             do{
                 let apellidos = responseIV.lastName.components(separatedBy: "\n")
-                zyBecomeOcr.apPaterno = apellidos[0]
-                zyBecomeOcr.apMaterno = apellidos[1]
-            }catch{
-                print("ZY:: no se pudo obtener los apellidos")
+                let arrayNumber = apellidos.count
+                if (arrayNumber >= 0){
+                    zyBecomeOcr.apPaterno = try apellidos[0]
+                }
+                if (arrayNumber >= 1){
+                    zyBecomeOcr.apMaterno = try apellidos[1]
+                }
+                
+            } catch{
+                zyBecomeOcr.apPaterno = ""
+                zyBecomeOcr.apPaterno = ""
+                
             }
-           
-
+            
+            
             zyBecomeOcr.dateOfExpiry = responseIV.dateOfExpiry.stringByFormatter(format: self.request.formatoFecha)
             zyBecomeOcr.dateOfBirth = responseIV.dateOfBirth.stringByFormatter(format: self.request.formatoFecha)
             zyBecomeOcr.age = String(responseIV.age)
