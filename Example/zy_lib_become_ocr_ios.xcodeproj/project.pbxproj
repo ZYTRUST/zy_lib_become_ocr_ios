@@ -26,6 +26,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		7F6854E428514A6700EB6B8C /* zyLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F6854E628514A6700EB6B8C /* zyLocalizable.strings */; };
 		7FB6FF3D282A9FAB002FD636 /* com.become.key.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7FB6FF3C282A9FAB002FD636 /* com.become.key.txt */; };
 		F0BF62B9E64958F2ED0F8918 /* Pods_zy_lib_become_ocr_ios_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A92EC32FDA0759ED187623FA /* Pods_zy_lib_become_ocr_ios_Example.framework */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,7 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		7F6854E528514A6700EB6B8C /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/zyLocalizable.strings; sourceTree = "<group>"; };
 		7FB6FF3C282A9FAB002FD636 /* com.become.key.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = com.become.key.txt; sourceTree = "<group>"; };
 		91F214C964E5CDA9AA6DE13B /* zy_lib_become_ocr_ios.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = zy_lib_become_ocr_ios.podspec; path = ../zy_lib_become_ocr_ios.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		969506E31E0D68C9BB97F59E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				7F6854E628514A6700EB6B8C /* zyLocalizable.strings */,
 			);
 			name = "Example for zy_lib_become_ocr_ios";
 			path = zy_lib_become_ocr_ios;
@@ -198,7 +201,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				English,
-				en,
 				Base,
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
@@ -217,6 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F6854E428514A6700EB6B8C /* zyLocalizable.strings in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -319,6 +322,14 @@
 				607FACDF1AFB9204008FA782 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		7F6854E628514A6700EB6B8C /* zyLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F6854E528514A6700EB6B8C /* English */,
+			);
+			name = zyLocalizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -429,11 +440,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 23WN72KD4H;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zy_lib_become_ocr_ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.1;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zy.bm.biomatchone.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -448,11 +461,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 23WN72KD4H;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zy_lib_become_ocr_ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.1;
 				MODULE_NAME = ExampleApp;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zy.bm.biomatchone.ios;

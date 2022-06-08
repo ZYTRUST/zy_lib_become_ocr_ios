@@ -1,8 +1,4 @@
 
-<<<<<<< HEAD
-zy_lib_become_ocr_ios.framework/.DS_Store
-.DS_Store
-=======
 # Created by https://www.toptal.com/developers/gitignore/api/swift
 # Edit at https://www.toptal.com/developers/gitignore?templates=swift
 
@@ -114,4 +110,3 @@ Example/Pods/
 
 
 # End of https://www.toptal.com/developers/gitignore/api/cocoapods
->>>>>>> parent of 9b59431 (Release 4.0.3)

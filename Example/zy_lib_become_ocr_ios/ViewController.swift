@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTM1MDI3NTAsIm5iZiI6MTY1MzUwMjc1MCwianRpIjoiMGFkYjE5ZGUtYjU0ZS00ODFiLTgwMjktNWIyYTZhYTBiNTc1IiwiZXhwIjoxNjUzNTA2MzUwLCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.FCZxfIEuwMwzWIvqGy1R1IYg-uCGKoN3hs33R5TOqTY"
+    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTQ3MjA5NTIsIm5iZiI6MTY1NDcyMDk1MiwianRpIjoiNmFhMWJmNTMtZjYyYS00YmFmLWI3ODctNjZiZmE4Yzg0MDQ2IiwiZXhwIjoxNjU0NzI0NTUyLCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.v6WAot9yf1CbOlMHJuGyRrMJQkgf6Cy6uqEvaOag8hM"
     
     func capturar(){
         
@@ -60,7 +60,8 @@ class ViewController: UIViewController {
         ocrRequest.userId = "3046"
         ocrRequest.formatoFecha = "dd/MM/yy"
         ocrRequest.allowLibraryLoading = true
-        
+        ocrRequest.stringTextName = "zyLocalizable"
+
         ocrBio.capturar(request: ocrRequest, validarAutenticidad: true)
         { (result:(ZyOcrResult<ZyOcrResponse, ZyOcrError>)) in
             switch result {

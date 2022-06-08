@@ -19,6 +19,7 @@ public struct ZyOcrRequest {
     public var fullFrontImage: String?
     public var allowLibraryLoading: Bool = false
     public var formatoFecha: String = "yyyy-MM-dd"
+    public var stringTextName:String?
     //public var validationTypes: String = "VIDEO/DNI"
 }
 

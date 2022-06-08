@@ -29,10 +29,14 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         
         self.callback = completion
         
+        var  nameStringFile = request.stringTextName ?? "zytrusttext"
+
+        
         let bdivConfig = BDIVConfig(token: request.token!,
                                     contractId: request.contractId!,
                                     userId: request.userId!,
-                                    ItFirstTransaction: true)
+                                    ItFirstTransaction: true ,
+                                    customLocalizationFileName: nameStringFile )
         
         print("bdivConfig \(String(describing: bdivConfig))")
         
