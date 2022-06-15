@@ -29,8 +29,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         
         self.callback = completion
         
-        var  nameStringFile = request.stringTextName ?? "zytrusttext"
-
+        var  nameStringFile = request.stringTextName ?? "zyLocalizable"
         
         let bdivConfig = BDIVConfig(token: request.token!,
                                     contractId: request.contractId!,
@@ -48,21 +47,32 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
                       zyOcrResponse:ZyOcrResponse?,completion:@escaping CallbackOcr){
         
         //print(String(describing: request))
+        var bdivConfig:BDIVConfig? = nil
         
         self.callback = completion
         self.zyOcrResponseCapturar = zyOcrResponse
         
-        let bdivConfig = BDIVConfig(token: request.token!,
-                                    contractId: request.contractId!,
-                                    userId: request.userId!,
-                                    ItFirstTransaction: false,
-                                    imgData: (request.fullFrontImage?.dataFromBase64)! )
+        if(request.becomePais != nil && request.becomePais != ""){
+            
+            bdivConfig = BDIVConfig(token: request.token!,
+                                        contractId: request.contractId!,
+                                        userId: request.userId!,
+                                        documentNumber: request.becomeNroDoc! ,
+                                        ItFirstTransaction: false,
+                                    imgData: (request.fullFrontImage!.pngData()!))
+         
+        } else{
+            callback(.error(.NO_BIO_PAIS))
+            return
+            
+        }
+    
         
         //imgData: (UIImagePNGRepresentation((request.fullFronImage?.imageFromBase64!)!)!))
         print("bdivConfig \(String(describing: bdivConfig))")
         
         BDIVCallBack.sharedInstance.delegate = self
-        BDIVCallBack.sharedInstance.register(bdivConfig: bdivConfig)
+        BDIVCallBack.sharedInstance.register(bdivConfig: bdivConfig!)
         
     }
     
@@ -77,14 +87,19 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         }
         
         if(responseIV.IsFirstTransaction){
-            zyBecomeOcr.frontImage = responseIV.frontImage?.jpegBase64
-            zyBecomeOcr.backImage = responseIV.backImage?.jpegBase64
-            zyBecomeOcr.fullBackImage = responseIV.fullBackImage?.pngBase64
-            zyBecomeOcr.fullFronImage = responseIV.fullFronImage?.pngBase64
+            zyBecomeOcr.frontImage = responseIV.frontImage
+            zyBecomeOcr.backImage = responseIV.backImage
+            zyBecomeOcr.fullBackImage = responseIV.fullBackImage
+            zyBecomeOcr.fullFronImage = responseIV.fullFronImage
             
             zyBecomeOcr.firstName = responseIV.firstName
             zyBecomeOcr.lastName = responseIV.lastName
-            
+            zyBecomeOcr.documentNumber = responseIV.documentNumber
+            zyBecomeOcr.ocrPais = responseIV.countryName
+            zyBecomeOcr.ocrIsoAlpha2CountryCode = responseIV.isoAlpha2CountryCode
+            zyBecomeOcr.ocrIsoAlpha3CountryCode = responseIV.isoAlpha2CountryCode
+            zyBecomeOcr.ocrIsoNumericCountryCode = responseIV.isoNumericCountryCode
+
             do{
                 if (responseIV.lastName != nil && responseIV.lastName != ""){
                     let apellidos = responseIV.lastName.components(separatedBy: "\n")
@@ -151,7 +166,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             return
         }
         else if errorNoSpace == "TOKENHASEXPIRED" {
-            callback(.error(.INICIALIZACION_ERROR))
+            callback(.error(.BECOME_TOKEN_EXPIRED))
             return
         }
         callback(.error(.INICIALIZACION_ERROR))

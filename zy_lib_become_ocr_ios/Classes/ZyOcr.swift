@@ -62,7 +62,9 @@ public class ZyOcr {
             switch result {
             case .success(let response):
                 if validarAutenticidad{
+                    
                     var secondRequest = request
+                    secondRequest.becomeNroDoc = response.zyBecomeOcr.documentNumber
                     secondRequest.fullFrontImage = response.zyBecomeOcr.fullFronImage!
                     self.enviar(request:secondRequest ,zyOcrResponse:response ,completion:completion)
                     

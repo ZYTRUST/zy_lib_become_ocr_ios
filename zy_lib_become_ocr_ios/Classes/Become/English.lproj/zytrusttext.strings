@@ -1,9 +1,0 @@
-/* 
-  Localizable.strings
-  zy_lib_become_ocr_ios
-
-  Created by Developer on 8/06/22.
-  Copyright © 2022 CocoaPods. All rights reserved.
-*/
-"blinkid_generic_message" = "test";
-"mb_blinkid_camera_flip_document" = "Escanea la parte de atrás del documento";

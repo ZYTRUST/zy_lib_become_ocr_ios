@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'zy_lib_become_ocr_ios'
-  s.version          = '6.2.0'
+  s.version          = '7.0.0'
   s.summary          = 'A short description of zy_lib_become_ocr_ios.'
 
 # This description is used to generate tags and improve search results.
@@ -51,6 +51,6 @@ TODO: Add long description of the pod here.
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'PPBlinkID', '~> 5.16.1'
   s.dependency 'Alamofire', '~> 4.8.2'
-  s.dependency 'BecomeSDK', '~> 1.2.0'
+  s.dependency 'BecomeSDK', '~> 1.2.3'
   
 end

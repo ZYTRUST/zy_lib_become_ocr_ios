@@ -16,10 +16,14 @@ public struct ZyOcrRequest {
     public var token: String?
     public var contractId: String?
     public var userId: String?
-    public var fullFrontImage: String?
+    public var fullFrontImage: UIImage?
     public var allowLibraryLoading: Bool = false
     public var formatoFecha: String = "yyyy-MM-dd"
     public var stringTextName:String?
+    public var becomePais:String?
+    public var becomeNroDoc:String?
+
+
     //public var validationTypes: String = "VIDEO/DNI"
 }
 
@@ -48,10 +52,10 @@ public struct ZyBecomeOcrResponse {
     public var sex: String?
     var barcodeResult: String?
     var barcodeResultData: String?
-    public var frontImage: String?
-    public var backImage: String?
-    public var fullFronImage: String?
-    public var fullBackImage: String?
+    public var frontImage: UIImage?
+    public var backImage: UIImage?
+    public var fullFronImage: UIImage?
+    public var fullBackImage: UIImage?
     var message: String?
     public var qualityScore:String?
     public var livenessScore:String?
@@ -59,7 +63,11 @@ public struct ZyBecomeOcrResponse {
     public var statusCode:String?
     var IsFirstTransaction: Bool?
     public var responseStatus: String?
-    
+    public var documentNumber: String?
+    public var ocrPais: String?
+    public var ocrIsoAlpha2CountryCode: String?
+    public var ocrIsoAlpha3CountryCode: String?
+    public var ocrIsoNumericCountryCode: String?
     /*init(firstName: String? = nil,
      lastName: String? = nil,
      dateOfExpiry: String? = nil,
@@ -130,6 +138,12 @@ enum ZyOcrErrorEnum:Int {
     case CAPTURA_OCR_ERROR_OBTENER_VALIDACION_DOC = 9802
     case CAPTURA_OCR_ERROR_EN_VALIDACION_DOC = 9803
     case NO_SIMULADOR = 9804
+    case NO_BIO_PAIS = 9805
+    case BIOPAIS_NO_FOUND = 9806
+    case OCR_NRO_DOC_NO_ENCONTRADO = 9807
+    case BECOME_TOKEN_EXPIRED = 9808
+
+
     
     
     var descripcion:String {
@@ -171,6 +185,14 @@ enum ZyOcrErrorEnum:Int {
             return "\(self.rawValue):Uno o mas parametros incorrectos"
         case .NO_SIMULADOR:
             return "\(self.rawValue):Libreria no corre en simulador"
+        case .NO_BIO_PAIS:
+            return "\(self.rawValue):Ingrese el PAIS correcto"
+        case .BIOPAIS_NO_FOUND:
+            return "\(self.rawValue):No se encontrò el còdigo de pais ingresado"
+        case .OCR_NRO_DOC_NO_ENCONTRADO:
+            return "\(self.rawValue):No se puedo extraer el número de documento"
+        case .BECOME_TOKEN_EXPIRED:
+            return "\(self.rawValue):TOken para inicializar OCR become Expirado"
         default:
             return ""
         }

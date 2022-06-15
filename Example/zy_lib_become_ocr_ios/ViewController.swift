@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTQ3MjA5NTIsIm5iZiI6MTY1NDcyMDk1MiwianRpIjoiNmFhMWJmNTMtZjYyYS00YmFmLWI3ODctNjZiZmE4Yzg0MDQ2IiwiZXhwIjoxNjU0NzI0NTUyLCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.v6WAot9yf1CbOlMHJuGyRrMJQkgf6Cy6uqEvaOag8hM"
+    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUyNTE4MDksIm5iZiI6MTY1NTI1MTgwOSwianRpIjoiYmU5MWRiNmYtYTA1Yi00MjAxLWI3MjItMGVjNTIyOTg5NWJiIiwiZXhwIjoxNjU1MjU1NDA5LCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.uhlvpSMkCHGJfz2EiiqM_G47188inEC1pPB1lKEifio"
     
     func capturar(){
         
@@ -58,6 +58,7 @@ class ViewController: UIViewController {
         ocrRequest.contractId = "46"
         ocrRequest.token = token
         ocrRequest.userId = "3046"
+        ocrRequest.becomePais = "PE"
         ocrRequest.formatoFecha = "dd/MM/yy"
         ocrRequest.allowLibraryLoading = true
         ocrRequest.stringTextName = "zyLocalizable"
@@ -69,9 +70,10 @@ class ViewController: UIViewController {
                 
                     let ocr = response.zyBecomeOcr
                 
-                    self.imageFront.image = response.zyBecomeOcr.frontImage?.imageFromBase64
-                    self.imageRear.image = response.zyBecomeOcr.backImage?.imageFromBase64
-                    
+                self.imageFront.image = response.zyBecomeOcr.frontImage
+                
+                self.imageRear.image = response.zyBecomeOcr.backImage
+                
                 
                     self.tvFirstName.text = ocr.firstName
                     self.tvLastName.text = ocr.lastName
@@ -83,7 +85,8 @@ class ViewController: UIViewController {
                     
                     self.tvResult.text = "statusCode:\(ocr.statusCode) qualityScore:\(ocr.qualityScore) livenessScore:\(ocr.livenessScore)  livenessProbability:\(ocr.livenessProbability) apPaterno:\(ocr.apPaterno) apMaterno:\(ocr.apMaterno)   "
                 
-                
+                print("\(response.zyBecomeOcr)")
+
                 case .error(let error):
                     self.tvResult.text = error.deError
             }
@@ -91,7 +94,7 @@ class ViewController: UIViewController {
         
     }
     
-    func enviar(image:String){
+    func enviar(image:UIImage){
         
         let ocrBio = ZyOcr(onView: self)
         
@@ -106,9 +109,9 @@ class ViewController: UIViewController {
         { (result:(ZyOcrResult<ZyOcrResponse, ZyOcrError>)) in
             switch result {
                 case .success(let response):
+                    print("\(response.zyBecomeOcr)")
                     let ocr = response.zyBecomeOcr
                     self.tvResult.text = "statusCode:\(ocr.statusCode) qualityScore:\(ocr.qualityScore) livenessScore:\(ocr.livenessScore)  livenessProbability:\(ocr.livenessProbability) "
-                
                 case .error(let error):
                     self.tvResult.text = error.deError
             }
