@@ -53,7 +53,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         self.zyOcrResponseCapturar = zyOcrResponse
         
         if(request.becomePais != nil && request.becomePais != ""){
-            
+            print("===>>>becomePais: \(request.becomePais)")
             switch (request.becomePais?.uppercased() ) {
             case "CO":
                 print("===>>> DOCUMENTO COLOMBIA")
