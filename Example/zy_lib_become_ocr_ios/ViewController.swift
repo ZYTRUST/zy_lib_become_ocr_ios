@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUyNTE4MDksIm5iZiI6MTY1NTI1MTgwOSwianRpIjoiYmU5MWRiNmYtYTA1Yi00MjAxLWI3MjItMGVjNTIyOTg5NWJiIiwiZXhwIjoxNjU1MjU1NDA5LCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.uhlvpSMkCHGJfz2EiiqM_G47188inEC1pPB1lKEifio"
+    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTY0NTA4MjIsIm5iZiI6MTY1NjQ1MDgyMiwianRpIjoiZDgxZGU0NjktNzA1Ni00YWZmLWFlMzYtYmEyZjM2NGRhM2QwIiwiZXhwIjoxNjU2NDU0NDIyLCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsInBlcm1pc3Npb24iOm51bGwsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.roLi5BuJiWTGzUwNmoyyodd7knBdK4M0j5wQkf2HJxs"
     
     func capturar(){
         
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         ocrRequest.contractId = "46"
         ocrRequest.token = token
         ocrRequest.userId = "3046"
-        ocrRequest.becomePais = "PE"
+        ocrRequest.becomePais = "EC"
         ocrRequest.formatoFecha = "dd/MM/yy"
         ocrRequest.allowLibraryLoading = true
         ocrRequest.stringTextName = "zyLocalizable"
@@ -116,6 +116,7 @@ class ViewController: UIViewController {
                     self.tvResult.text = error.deError
             }
         }
+        
         #endif
         
         

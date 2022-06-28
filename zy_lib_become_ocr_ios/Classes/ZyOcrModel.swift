@@ -118,6 +118,11 @@ public struct ZyOcrError{
     public let deError:String
 }
 
+public struct ZyLibOcrError{
+    public let coError:Int
+    public let deError:String
+}
+
 enum ZyOcrErrorEnum:Int {
     case EXITO = 8000
     case CREDENCIAL_INCORRECTA = 9101
@@ -142,6 +147,9 @@ enum ZyOcrErrorEnum:Int {
     case BIOPAIS_NO_FOUND = 9806
     case OCR_NRO_DOC_NO_ENCONTRADO = 9807
     case BECOME_TOKEN_EXPIRED = 9808
+    case BECOME_WS_TIMEOUT = 9809
+    case BECOME_WS_BECOME_NO_REGISTRY = 9810
+    case BECOME_ERROR_DOC_PAIS_NO_SOPORTADO = 9811
 
 
     
@@ -160,6 +168,8 @@ enum ZyOcrErrorEnum:Int {
             
         case .CAPTURA_OCR_ERROR_EN_VALIDACION_DOC:
             return "\(self.rawValue):Error en WS Validacion Documento , WS OCR_BECOME"
+        case .BECOME_WS_TIMEOUT:
+            return "\(self.rawValue):Error en servicio de WS de BECOME , WS OCR_BECOME"
             
         case .EXITO:
             return "\(self.rawValue):Exito"
@@ -192,7 +202,13 @@ enum ZyOcrErrorEnum:Int {
         case .OCR_NRO_DOC_NO_ENCONTRADO:
             return "\(self.rawValue):No se puedo extraer el número de documento"
         case .BECOME_TOKEN_EXPIRED:
-            return "\(self.rawValue):TOken para inicializar OCR become Expirado"
+            return "\(self.rawValue):Token para inicializar OCR become Expirado"
+        case .BECOME_WS_BECOME_NO_REGISTRY:
+            return "\(self.rawValue):ERROR BECOME WS ,BECOME NO ESTA EN BD DE REGISTRADURIA"
+        case .BECOME_ERROR_DOC_PAIS_NO_SOPORTADO:
+            return "\(self.rawValue):CODIGO DE PAIS NO SOPORTADO"
+            
+            
         default:
             return ""
         }

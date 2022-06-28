@@ -14,7 +14,7 @@ import BecomeDigitalV
 class ZyBecomeOcr: UIViewController, BDIVDelegate {
     
     private var vc: UIViewController!
-    typealias CallbackOcr = ((ZyOcrResult<ZyOcrResponse, ZyOcrErrorEnum>)) -> Void
+    typealias CallbackOcr = ((ZyOcrResult<ZyOcrResponse, ZyLibOcrError>)) -> Void
     private var callback:CallbackOcr!
     private var zyOcrResponseCapturar:ZyOcrResponse?
     
@@ -54,19 +54,39 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         
         if(request.becomePais != nil && request.becomePais != ""){
             
-            bdivConfig = BDIVConfig(token: request.token!,
+            switch (request.becomePais?.uppercased() ) {
+            case "CO":
+                print("===>>> DOCUMENTO COLOMBIA")
+                bdivConfig = BDIVConfig(token: request.token!,
                                         contractId: request.contractId!,
                                         userId: request.userId!,
-                                        documentNumber: request.becomeNroDoc! ,
+                                        documentNumber: request.becomeNroDoc!,
                                         ItFirstTransaction: false,
-                                    imgData: (request.fullFrontImage!.pngData()!))
-         
-        } else{
-            callback(.error(.NO_BIO_PAIS))
+                                        imgData: (request.fullFrontImage!.pngData()!))
+                break
+            case "PE":
+                print("===>>> DOCUMENTO PERU")
+                bdivConfig = BDIVConfig(token: request.token!,
+                                        contractId: request.contractId!,
+                                        userId: request.userId!,
+                                        ItFirstTransaction: false,
+                                        imgData: (request.fullFrontImage!.pngData()!))
+                break
+            default:
+                print("===>>> DEFAULT ERROR")
+                callback(.error(ZyLibOcrError(coError:ZyOcrErrorEnum.BECOME_ERROR_DOC_PAIS_NO_SOPORTADO.rawValue ,
+                                              deError:ZyOcrErrorEnum.BECOME_ERROR_DOC_PAIS_NO_SOPORTADO.descripcion )))
+                return
+            }
+            
+            
+        } else {
+            callback(.error(ZyLibOcrError(coError:ZyOcrErrorEnum.NO_BIO_PAIS.rawValue ,
+                                          deError:ZyOcrErrorEnum.NO_BIO_PAIS.descripcion )))
             return
             
         }
-    
+        
         
         //imgData: (UIImagePNGRepresentation((request.fullFronImage?.imageFromBase64!)!)!))
         print("bdivConfig \(String(describing: bdivConfig))")
@@ -99,7 +119,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.ocrIsoAlpha2CountryCode = responseIV.isoAlpha2CountryCode
             zyBecomeOcr.ocrIsoAlpha3CountryCode = responseIV.isoAlpha2CountryCode
             zyBecomeOcr.ocrIsoNumericCountryCode = responseIV.isoNumericCountryCode
-
+            
             do{
                 if (responseIV.lastName != nil && responseIV.lastName != ""){
                     let apellidos = responseIV.lastName.components(separatedBy: "\n")
@@ -111,7 +131,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
                         zyBecomeOcr.apMaterno = try? apellidos[1]
                     }
                 }
-            
+                
                 
             } catch{
                 zyBecomeOcr.apPaterno = ""
@@ -158,19 +178,25 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         
         //TOKENHASEXPIRED
         if errorNoSpace == "CANCELEDBYUSER"{
-            callback(.error(.CAPTURA_CANCELADA))
+            callback(.error(ZyLibOcrError(coError:ZyOcrErrorEnum.CAPTURA_CANCELADA.rawValue ,deError: ZyOcrErrorEnum.CAPTURA_CANCELADA.descripcion)))
             return
         }
         else if errorNoSpace == "INCORRECTSDKCONFIGURATION" {
-            callback(.error(.INICIALIZACION_ERROR))
+            callback(.error(ZyLibOcrError(coError:ZyOcrErrorEnum.INICIALIZACION_ERROR.rawValue ,deError: ZyOcrErrorEnum.INICIALIZACION_ERROR.descripcion)))
             return
         }
         else if errorNoSpace == "TOKENHASEXPIRED" {
-            callback(.error(.BECOME_TOKEN_EXPIRED))
+            callback(.error(ZyLibOcrError(coError:ZyOcrErrorEnum.BECOME_TOKEN_EXPIRED.rawValue ,deError: ZyOcrErrorEnum.BECOME_TOKEN_EXPIRED.descripcion)))
             return
         }
-        callback(.error(.INICIALIZACION_ERROR))
+        else if errorNoSpace == "NORESULTSWEREFOUNDINTHECOLOMBIANREGISTRADURIADATABASE" {
+            callback(.error(ZyLibOcrError(coError:ZyOcrErrorEnum.BECOME_WS_BECOME_NO_REGISTRY.rawValue ,
+                                          deError: ZyOcrErrorEnum.BECOME_WS_BECOME_NO_REGISTRY.descripcion)))
+            return
+        }
         
+        callback(.error(ZyLibOcrError(coError:ZyOcrErrorEnum.INICIALIZACION_ERROR.rawValue ,
+                                      deError: "\(ZyOcrErrorEnum.INICIALIZACION_ERROR.descripcion) ,ErrorOrigen: \(errorNoSpace)" )))
     }
     
 }

@@ -53,7 +53,7 @@ public class ZyOcr {
         }
         
         apiOcr.capturar(request: request)
-        { (result:(ZyOcrResult<ZyOcrResponse, ZyOcrErrorEnum>)) in
+        { (result:(ZyOcrResult<ZyOcrResponse, ZyLibOcrError>)) in
             
             if(request.allowLibraryLoading){
                 UIViewController.removeSpinner(spinner: self.sv)
@@ -77,8 +77,8 @@ public class ZyOcr {
                 
             case .error(let error):
                 self.vc.dismiss(animated: false)
-                completion(.error(ZyOcrError(coError: error.rawValue,
-                                             deError: error.descripcion)))
+                completion(.error(ZyOcrError(coError: error.coError,
+                                             deError: error.deError)))
             }
         }
 #else
@@ -109,7 +109,7 @@ public class ZyOcr {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.apiOcr.enviarImagen(request: request, zyOcrResponse:zyOcrResponse)
-            { (result:(ZyOcrResult<ZyOcrResponse, ZyOcrErrorEnum>)) in
+            { (result:(ZyOcrResult<ZyOcrResponse, ZyLibOcrError>)) in
                 
                 if(request.allowLibraryLoading){
                     UIViewController.removeSpinner(spinner: self.sv)
@@ -121,8 +121,8 @@ public class ZyOcr {
                     
                 case .error(let error):
                     self.vc.dismiss(animated: false)
-                    completion(.error(ZyOcrError(coError: error.rawValue,
-                                                 deError: error.descripcion)))
+                    completion(.error(ZyOcrError(coError: error.coError,
+                                                 deError: error.deError)))
                 }
             }
         }
