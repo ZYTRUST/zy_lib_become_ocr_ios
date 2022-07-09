@@ -17,6 +17,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
     typealias CallbackOcr = ((ZyOcrResult<ZyOcrResponse, ZyLibOcrError>)) -> Void
     private var callback:CallbackOcr!
     private var zyOcrResponseCapturar:ZyOcrResponse?
+    private var zyBecomeOcr = ZyBecomeOcrResponse()
     
     weak var delegate: BDIVDelegate?
     
@@ -101,7 +102,6 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         let responseIV = bdivResult as! ResponseIV
         
         print(String(describing: responseIV))
-        var zyBecomeOcr = ZyBecomeOcrResponse()
         if (self.zyOcrResponseCapturar != nil){
             zyBecomeOcr = self.zyOcrResponseCapturar?.zyBecomeOcr ?? zyBecomeOcr
         }
@@ -148,7 +148,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.barcodeResult = responseIV.barcodeResult
             zyBecomeOcr.responseStatus = String(describing: responseIV.responseStatus)
         }
-        else{
+        else {
             let validacion = responseIV.documentValidation
             if let quality_score = validacion["quality_score"] as? Double {
                 zyBecomeOcr.qualityScore = String(format: "%f", quality_score)
@@ -163,6 +163,11 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             if let status_code = validacion["status_code"] as? String {
                 zyBecomeOcr.statusCode = status_code
             }
+            
+            self.analisisRegistraduria(responseIV:responseIV)
+            
+            
+            
         }
         
         let response = ZyOcrResponse(zyBecomeOcr: zyBecomeOcr)
@@ -171,6 +176,58 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         callback(.success(response))
     }
 #endif
+    
+    private func analisisRegistraduria( responseIV:ResponseIV){
+        print("===>> Informacion de Registraduria")
+        print("===>> Informacion de Registraduria CO: -> \(responseIV.registryInformation)")
+        zyBecomeOcr.zyRegistraduria =  ZyRegistraduria()
+
+        if (zyBecomeOcr.ocrIsoAlpha2CountryCode != "CO"){
+            print("===>> BECOME_BECOME_REGISTRADURIA_DOCUMENTO_NO_COLOMBIA")
+            
+            zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.BECOME_BECOME_REGISTRADURIA_DOCUMENTO_NO_COLOMBIA.rawValue
+            zyBecomeOcr.zyRegistraduria?.deErrorRegistraduria = ZyOcrErrorEnum.BECOME_BECOME_REGISTRADURIA_DOCUMENTO_NO_COLOMBIA.descripcion
+            return
+        }
+        
+        if (responseIV.registryInformation.isEmpty ){
+            print("===>> responseIV.registryInformation isEmpty")
+            zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.rawValue
+            zyBecomeOcr.zyRegistraduria?.deErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.descripcion
+            
+            print("===>> responseIV.registryInformation DUMMY")
+            zyBecomeOcr.zyRegistraduria?.registraduriaAgeRange = "30-40"
+            zyBecomeOcr.zyRegistraduria?.registraduriaDocumentNumber = "00000000"
+            zyBecomeOcr.zyRegistraduria?.registraduriaEmissionDate = "12/23/22"
+            zyBecomeOcr.zyRegistraduria?.registraduriaFullName = "CACERES ZEVALLOS IVAN ALEXANDRE"
+            zyBecomeOcr.zyRegistraduria?.registraduriaGender = "F"
+            zyBecomeOcr.zyRegistraduria?.registraduriaIssuePlace = "BOGOTA DC"
+            zyBecomeOcr.zyRegistraduria?.registraduriaName = "IVAN"
+            zyBecomeOcr.zyRegistraduria?.registraduriaMiddleName = "ALEXANDRE"
+            zyBecomeOcr.zyRegistraduria?.registraduriaSurname = "CACERES"
+            zyBecomeOcr.zyRegistraduria?.registraduriaSecondSurname = "ZEVALLOS"
+            
+            return
+        }
+        
+        print("===>> ParserData Registraduria")
+        
+        zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.EXITO.rawValue
+        zyBecomeOcr.zyRegistraduria?.deErrorRegistraduria = ZyOcrErrorEnum.EXITO.descripcion
+        
+        zyBecomeOcr.zyRegistraduria?.registraduriaAgeRange = "30-40"
+        zyBecomeOcr.zyRegistraduria?.registraduriaDocumentNumber = "00000000"
+        zyBecomeOcr.zyRegistraduria?.registraduriaEmissionDate = "12/23/22"
+        zyBecomeOcr.zyRegistraduria?.registraduriaFullName = "CACERES ZEVALLOS IVAN ALEXANDRE"
+        zyBecomeOcr.zyRegistraduria?.registraduriaGender = "F"
+        zyBecomeOcr.zyRegistraduria?.registraduriaIssuePlace = "BOGOTA DC"
+        zyBecomeOcr.zyRegistraduria?.registraduriaName = "IVAN"
+        zyBecomeOcr.zyRegistraduria?.registraduriaMiddleName = "ALEXANDRE"
+        zyBecomeOcr.zyRegistraduria?.registraduriaSurname = "CACERES"
+        zyBecomeOcr.zyRegistraduria?.registraduriaSecondSurname = "ZEVALLOS"
+
+        
+    }
     
     public  func BDIVResponseError(error: String) {
         let errorNoSpace = error.stringByRemovingAll(subStrings: [" "]).uppercased()

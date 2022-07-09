@@ -68,43 +68,36 @@ public struct ZyBecomeOcrResponse {
     public var ocrIsoAlpha2CountryCode: String?
     public var ocrIsoAlpha3CountryCode: String?
     public var ocrIsoNumericCountryCode: String?
-    /*init(firstName: String? = nil,
-     lastName: String? = nil,
-     dateOfExpiry: String? = nil,
-     age: String? = nil,
-     dateOfBirth: String? = nil,
-     mrzText: String? = nil,
-     sex: String? = nil,
-     barcodeResult: String? = nil,
-     barcodeResultData: String? = nil,
-     frontImage: String? = nil,
-     backImage: String? = nil,
-     fullFronImage: UIImage? = nil,
-     fullBackImage: UIImage? = nil,
-     message: String? = nil,
-     documentValidation: [String: Any]? = nil,
-     IsFirstTransaction: Bool? = nil,
-     responseStatus: String? = nil){
-     
-     self.firstName = firstName
-     self.lastName = lastName
-     self.dateOfExpiry = dateOfExpiry
-     self.age = age
-     self.dateOfBirth = dateOfBirth
-     self.mrzText = mrzText
-     self.sex = sex
-     self.barcodeResult = barcodeResult
-     self.barcodeResultData = barcodeResultData
-     self.frontImage = frontImage
-     self.backImage = backImage
-     self.fullFronImage = fullFronImage
-     self.fullBackImage = fullBackImage
-     self.message = message
-     self.documentValidation = documentValidation
-     self.IsFirstTransaction = IsFirstTransaction
-     self.responseStatus = responseStatus
-     }*/
+    public var zyRegistraduria: ZyRegistraduria?
 }
+
+public struct ZyRegistraduria{
+    public init(){}
+    public var coErrorRegistraduria:Int? 
+    public var deErrorRegistraduria:String? = ""
+    
+    public var registraduriaAgeRange:String? = ""
+    public var registraduriaBankAccountsCount:String? = ""
+    public var registraduriaCommercialIndustryDebtsCount:String? = ""
+    public var registraduriaDocumentNumber:String? = ""
+    public var registraduriaEmissionDate:String? = ""
+    public var registraduriaFinancialIndustryDebtsCount:String? = ""
+
+    public var registraduriaFullName:String? = ""
+    public var registraduriaGender:String? = ""
+    public var registraduriaIssuePlace:String? = ""
+    public var registraduriaName:String? = ""
+
+    public var registraduriaMiddleName:String? = ""
+    public var registraduriaSurname:String? = ""
+    public var registraduriaSecondSurname:String? = ""
+    public var registraduriaSavingAccountsCount:String? = ""
+    public var registraduriaSolidarityIndustryDebtsCount:String? = ""
+    public var registraduriaServiceIndustryDebtsCount:String? = ""
+
+    
+}
+
 
 
 enum typeEstatus {
@@ -148,9 +141,11 @@ enum ZyOcrErrorEnum:Int {
     case OCR_NRO_DOC_NO_ENCONTRADO = 9807
     case BECOME_TOKEN_EXPIRED = 9808
     case BECOME_WS_TIMEOUT = 9809
-    case BECOME_WS_BECOME_NO_REGISTRY = 9810
-    case BECOME_ERROR_DOC_PAIS_NO_SOPORTADO = 9811
-
+    case BECOME_WS_BECOME_NO_REGISTRY = 9812
+    case BECOME_BECOME_REGISTRADURIA_DOCUMENTO_NO_COLOMBIA = 9813
+    case BECOME_ERROR_DOC_PAIS_NO_SOPORTADO = 9814
+    case BECOME_ERROR_DOCUMENTO_PAIS_ERROR = 9815
+    case BECOME_ERROR_BECOME_NOREGISTRY_DATA = 9816
 
     
     
@@ -204,10 +199,14 @@ enum ZyOcrErrorEnum:Int {
         case .BECOME_TOKEN_EXPIRED:
             return "\(self.rawValue):Token para inicializar OCR become Expirado"
         case .BECOME_WS_BECOME_NO_REGISTRY:
-            return "\(self.rawValue):ERROR BECOME WS ,BECOME NO ESTA EN BD DE REGISTRADURIA"
+            return "\(self.rawValue):Data de registraduria nula"
         case .BECOME_ERROR_DOC_PAIS_NO_SOPORTADO:
             return "\(self.rawValue):CODIGO DE PAIS NO SOPORTADO"
             
+        case .BECOME_BECOME_REGISTRADURIA_DOCUMENTO_NO_COLOMBIA:
+            return "\(self.rawValue):Documento no es Colombiano"
+        case .BECOME_ERROR_BECOME_NOREGISTRY_DATA:
+            return "\(self.rawValue):No hay Data de registraduria"
             
         default:
             return ""
