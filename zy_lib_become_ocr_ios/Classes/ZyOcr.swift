@@ -37,12 +37,22 @@ public class ZyOcr {
     public func capturar(request:ZyOcrRequest,validarAutenticidad:Bool,
                          completion:@escaping CallbackOcr){
 #if !targetEnvironment(simulator)
-        guard let _ = request.userId,
-              let _ = request.token,
-              let _ = request.contractId else {
+        guard let _ = request.userId else {
             
-            completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS.rawValue,
-                                         deError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS.descripcion)))
+            completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS_USERID.rawValue,
+                                         deError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS_USERID.descripcion)))
+            return;
+        }
+        guard let _ = request.token else {
+            
+            completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS_TOKEN.rawValue,
+                                         deError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS_TOKEN.descripcion)))
+            return;
+        }
+        guard let _ = request.contractId else {
+            
+            completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS_CONTRACTID.rawValue,
+                                         deError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS_CONTRACTID.descripcion)))
             return;
         }
         

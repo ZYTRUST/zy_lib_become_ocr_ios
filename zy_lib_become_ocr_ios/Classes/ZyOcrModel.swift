@@ -131,6 +131,9 @@ enum ZyOcrErrorEnum:Int {
     case ERROR_TIMEOUT = 9116
     case ERROR_BAD_CAPTURE = 9118
     case PARAMETROS_INCOMPLETOS = 9200
+    case PARAMETROS_INCOMPLETOS_USERID = 9201
+    case PARAMETROS_INCOMPLETOS_TOKEN = 9202
+    case PARAMETROS_INCOMPLETOS_CONTRACTID = 9203
     case CAPTURA_OCR_ERROR_EN_CAPTURA_DOC = 9800
     case CAPTURA_OCR_ERROR_FRONT_IMG_EMPTY = 9801
     case CAPTURA_OCR_ERROR_OBTENER_VALIDACION_DOC = 9802
@@ -208,6 +211,15 @@ enum ZyOcrErrorEnum:Int {
         case .BECOME_ERROR_BECOME_NOREGISTRY_DATA:
             return "\(self.rawValue):No hay Data de registraduria"
             
+        case .PARAMETROS_INCOMPLETOS_USERID:
+            return "\(self.rawValue):Become UserId invalido"
+            
+        case .PARAMETROS_INCOMPLETOS_TOKEN:
+            return "\(self.rawValue):Become token invalido"
+            
+        case .PARAMETROS_INCOMPLETOS_CONTRACTID:
+            return "\(self.rawValue):Become contractId invalido"
+  
         default:
             return ""
         }
