@@ -63,7 +63,9 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
                                         userId: request.userId!,
                                         documentNumber: request.becomeNroDoc!,
                                         ItFirstTransaction: false,
-                                        imgData: (request.fullFrontImage!.pngData()!))
+                                        imgDataFullFront: (request.fullFrontImage!.pngData()!) ,
+                                        imgDataCroppetBack:  request.backImage!.pngData()! ,
+                                        barcodeResultData: request.barcodeResult!)
                 break
             case "PE":
                 print("===>>> DOCUMENTO PERU")
@@ -71,7 +73,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
                                         contractId: request.contractId!,
                                         userId: request.userId!,
                                         ItFirstTransaction: false,
-                                        imgData: (request.fullFrontImage!.pngData()!))
+                                        imgDataFullFront: (request.fullFrontImage!.pngData()!))
                 break
             default:
                 print("===>>> DEFAULT ERROR")
@@ -111,7 +113,8 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.backImage = responseIV.backImage
             zyBecomeOcr.fullBackImage = responseIV.fullBackImage
             zyBecomeOcr.fullFronImage = responseIV.fullFronImage
-            
+            zyBecomeOcr.barcodeResult = responseIV.barcodeResult
+
             zyBecomeOcr.firstName = responseIV.firstName
             zyBecomeOcr.lastName = responseIV.lastName
             zyBecomeOcr.documentNumber = responseIV.documentNumber
@@ -119,6 +122,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.ocrIsoAlpha2CountryCode = responseIV.isoAlpha2CountryCode
             zyBecomeOcr.ocrIsoAlpha3CountryCode = responseIV.isoAlpha2CountryCode
             zyBecomeOcr.ocrIsoNumericCountryCode = responseIV.isoNumericCountryCode
+            zyBecomeOcr.placeOfBirth = responseIV.placeOfBirth
             
             do{
                 if (responseIV.lastName != nil && responseIV.lastName != ""){
@@ -195,7 +199,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.rawValue
             zyBecomeOcr.zyRegistraduria?.deErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.descripcion
             
-            print("===>> responseIV.registryInformation DUMMY")
+            /*print("===>> responseIV.registryInformation DUMMY")
             zyBecomeOcr.zyRegistraduria?.registraduriaAgeRange = "30-40"
             zyBecomeOcr.zyRegistraduria?.registraduriaDocumentNumber = "00000000"
             zyBecomeOcr.zyRegistraduria?.registraduriaEmissionDate = "12/23/22"
@@ -205,7 +209,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.zyRegistraduria?.registraduriaName = "IVAN"
             zyBecomeOcr.zyRegistraduria?.registraduriaMiddleName = "ALEXANDRE"
             zyBecomeOcr.zyRegistraduria?.registraduriaSurname = "CACERES"
-            zyBecomeOcr.zyRegistraduria?.registraduriaSecondSurname = "ZEVALLOS"
+            zyBecomeOcr.zyRegistraduria?.registraduriaSecondSurname = "ZEVALLOS"*/
             
             return
         }
@@ -215,16 +219,47 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.EXITO.rawValue
         zyBecomeOcr.zyRegistraduria?.deErrorRegistraduria = ZyOcrErrorEnum.EXITO.descripcion
         
-        zyBecomeOcr.zyRegistraduria?.registraduriaAgeRange = "30-40"
-        zyBecomeOcr.zyRegistraduria?.registraduriaDocumentNumber = "00000000"
-        zyBecomeOcr.zyRegistraduria?.registraduriaEmissionDate = "12/23/22"
-        zyBecomeOcr.zyRegistraduria?.registraduriaFullName = "CACERES ZEVALLOS IVAN ALEXANDRE"
-        zyBecomeOcr.zyRegistraduria?.registraduriaGender = "F"
-        zyBecomeOcr.zyRegistraduria?.registraduriaIssuePlace = "BOGOTA DC"
-        zyBecomeOcr.zyRegistraduria?.registraduriaName = "IVAN"
-        zyBecomeOcr.zyRegistraduria?.registraduriaMiddleName = "ALEXANDRE"
-        zyBecomeOcr.zyRegistraduria?.registraduriaSurname = "CACERES"
-        zyBecomeOcr.zyRegistraduria?.registraduriaSecondSurname = "ZEVALLOS"
+        let registraduria = responseIV.registryInformation
+        if let ageRange = registraduria["ageRange"] as? String {
+            zyBecomeOcr.zyRegistraduria?.registraduriaAgeRange = String(format: "%f", ageRange)
+            
+        }
+        if let documentNumber = registraduria["documentNumber"] as? String {
+            zyBecomeOcr.zyRegistraduria?.registraduriaDocumentNumber = String(format: "%f", documentNumber)
+            
+        }
+        if let emissionDate = registraduria["emissionDate"] as? String {
+            zyBecomeOcr.zyRegistraduria?.registraduriaEmissionDate = String(format: "%f", emissionDate)
+            
+        }
+        if let fullName = registraduria["fullName"] as? String {
+            zyBecomeOcr.zyRegistraduria?.registraduriaFullName = String(format: "%f", fullName)
+            
+        }
+        if let gender = registraduria["gender"] as? String {
+            zyBecomeOcr.zyRegistraduria?.registraduriaGender = String(format: "%f", gender)
+            
+        }
+        if let issuePlace = registraduria["issuePlace"] as? String {
+            zyBecomeOcr.zyRegistraduria?.registraduriaIssuePlace = String(format: "%f", issuePlace)
+            
+        }
+        if let middleName = registraduria["middleName"] as? String {
+            zyBecomeOcr.zyRegistraduria?.registraduriaMiddleName = String(format: "%f", middleName)
+            
+        }
+        if let name = registraduria["name"] as? String {
+            zyBecomeOcr.zyRegistraduria?.registraduriaName = String(format: "%f", name)
+            
+        }
+        if let surname = registraduria["surname"] as? String {
+            zyBecomeOcr.zyRegistraduria?.registraduriaSurname = String(format: "%f", surname)
+            
+        }
+        if let secondSurname = registraduria["secondSurname"] as? String {
+            zyBecomeOcr.zyRegistraduria?.registraduriaSecondSurname = String(format: "%f", secondSurname)
+            
+        }
 
         
     }

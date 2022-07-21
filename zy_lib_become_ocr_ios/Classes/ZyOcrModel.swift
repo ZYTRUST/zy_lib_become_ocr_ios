@@ -17,6 +17,9 @@ public struct ZyOcrRequest {
     public var contractId: String?
     public var userId: String?
     public var fullFrontImage: UIImage?
+    public var backImage: UIImage?
+    public var barcodeResult: String?
+
     public var allowLibraryLoading: Bool = false
     public var formatoFecha: String = "yyyy-MM-dd"
     public var stringTextName:String?
@@ -68,6 +71,7 @@ public struct ZyBecomeOcrResponse {
     public var ocrIsoAlpha2CountryCode: String?
     public var ocrIsoAlpha3CountryCode: String?
     public var ocrIsoNumericCountryCode: String?
+    public var placeOfBirth: String?
     public var zyRegistraduria: ZyRegistraduria?
 }
 

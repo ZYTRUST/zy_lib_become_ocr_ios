@@ -76,6 +76,8 @@ public class ZyOcr {
                     var secondRequest = request
                     secondRequest.becomeNroDoc = response.zyBecomeOcr.documentNumber
                     secondRequest.fullFrontImage = response.zyBecomeOcr.fullFronImage!
+                    secondRequest.backImage = response.zyBecomeOcr.backImage
+                    secondRequest.barcodeResult = response.zyBecomeOcr.barcodeResult
                     self.enviar(request:secondRequest ,zyOcrResponse:response ,completion:completion)
                     
                     
@@ -105,6 +107,8 @@ public class ZyOcr {
         guard let _ = request.userId,
               let _ = request.token,
               let _ = request.fullFrontImage,
+              let _ = request.backImage,
+              let _ = request.barcodeResult,
               let _ = request.contractId else {
             
             completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS.rawValue,
@@ -120,7 +124,6 @@ public class ZyOcr {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.apiOcr.enviarImagen(request: request, zyOcrResponse:zyOcrResponse)
             { (result:(ZyOcrResult<ZyOcrResponse, ZyLibOcrError>)) in
-                
                 if(request.allowLibraryLoading){
                     UIViewController.removeSpinner(spinner: self.sv)
                 }

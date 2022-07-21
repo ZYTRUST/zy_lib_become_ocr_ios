@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTczOTAwMzYsIm5iZiI6MTY1NzM5MDAzNiwianRpIjoiZDVlMWMyYmQtOTM4NS00MzExLWJlNjYtYmNjNzEwZmMxOGZhIiwiZXhwIjoxNjU3MzkzNjM2LCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsInBlcm1pc3Npb24iOm51bGwsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.uneFGd_VYHnb8CelsmTDQwJHcBlaT49X62u4_2E5Z2c"
+    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgzNzcwODMsIm5iZiI6MTY1ODM3NzA4MywianRpIjoiYTNjNTdkOTAtZWY5Mi00OWMyLWJmMDMtZGNiMDRlZjg5MTNlIiwiZXhwIjoxNjU4MzgwNjgzLCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsInBlcm1pc3Npb24iOm51bGwsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.u9Lm9bdAKy1UdXpx41CBtrihmVo5mUf9b2VYHVnulFs"
     
     func capturar(){
         
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         ocrRequest.contractId = "46"
         ocrRequest.token = token
         ocrRequest.userId = "3046"
-        ocrRequest.becomePais = "PE"
+        ocrRequest.becomePais = "CO"
         ocrRequest.formatoFecha = "dd/MM/yy"
         ocrRequest.allowLibraryLoading = true
         ocrRequest.stringTextName = "zyLocalizable"
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
                     self.tvDateBirth.text = ocr.dateOfBirth
                     self.tvMrz.text = ocr.mrzText
                     
-                    self.tvResult.text = "statusCode:\(ocr.statusCode) qualityScore:\(ocr.qualityScore) livenessScore:\(ocr.livenessScore)  livenessProbability:\(ocr.livenessProbability) apPaterno:\(ocr.apPaterno) apMaterno:\(ocr.apMaterno)   "
+                self.tvResult.text = "statusCode:\(ocr.statusCode) qualityScore:\(ocr.qualityScore) livenessScore:\(ocr.livenessScore)  livenessProbability:\(ocr.livenessProbability) apPaterno:\(ocr.apPaterno) apMaterno:\(ocr.apMaterno) placeOfBirth:\(ocr.placeOfBirth) "
                 
                 print("\(response.zyBecomeOcr)")
 
