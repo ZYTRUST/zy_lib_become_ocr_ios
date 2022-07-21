@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgzNzcwODMsIm5iZiI6MTY1ODM3NzA4MywianRpIjoiYTNjNTdkOTAtZWY5Mi00OWMyLWJmMDMtZGNiMDRlZjg5MTNlIiwiZXhwIjoxNjU4MzgwNjgzLCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsInBlcm1pc3Npb24iOm51bGwsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.u9Lm9bdAKy1UdXpx41CBtrihmVo5mUf9b2VYHVnulFs"
+    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgzODc4NDAsIm5iZiI6MTY1ODM4Nzg0MCwianRpIjoiNmY1ZTU1NDMtYjM0My00ZjJmLThjYzItY2YxZjc3YTcxZTFkIiwiZXhwIjoxNjU4MzkxNDQwLCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsInBlcm1pc3Npb24iOm51bGwsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.r-meo-7Hbz6TLyl1VxeGbeBCVG9xRVruwiy8xY7Det8"
     
     func capturar(){
         
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
                     self.tvDateBirth.text = ocr.dateOfBirth
                     self.tvMrz.text = ocr.mrzText
                     
-                self.tvResult.text = "statusCode:\(ocr.statusCode) qualityScore:\(ocr.qualityScore) livenessScore:\(ocr.livenessScore)  livenessProbability:\(ocr.livenessProbability) apPaterno:\(ocr.apPaterno) apMaterno:\(ocr.apMaterno) placeOfBirth:\(ocr.placeOfBirth) "
+                self.tvResult.text = "statusCode:\(ocr.statusCode) qualityScore:\(ocr.qualityScore) livenessScore:\(ocr.livenessScore)  livenessProbability:\(ocr.livenessProbability) apPaterno:\(ocr.apPaterno) apMaterno:\(ocr.apMaterno) placeBirth:\(ocr.placeOfBirth) registraduriaName:\(ocr.zyRegistraduria?.registraduriaName) registraduriaNuDocu:\(ocr.zyRegistraduria?.registraduriaDocumentNumber)"
                 
                 print("\(response.zyBecomeOcr)")
 

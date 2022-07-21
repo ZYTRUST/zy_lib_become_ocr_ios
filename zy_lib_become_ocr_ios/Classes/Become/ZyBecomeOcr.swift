@@ -198,19 +198,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             print("===>> responseIV.registryInformation isEmpty")
             zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.rawValue
             zyBecomeOcr.zyRegistraduria?.deErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.descripcion
-            
-            /*print("===>> responseIV.registryInformation DUMMY")
-            zyBecomeOcr.zyRegistraduria?.registraduriaAgeRange = "30-40"
-            zyBecomeOcr.zyRegistraduria?.registraduriaDocumentNumber = "00000000"
-            zyBecomeOcr.zyRegistraduria?.registraduriaEmissionDate = "12/23/22"
-            zyBecomeOcr.zyRegistraduria?.registraduriaFullName = "CACERES ZEVALLOS IVAN ALEXANDRE"
-            zyBecomeOcr.zyRegistraduria?.registraduriaGender = "F"
-            zyBecomeOcr.zyRegistraduria?.registraduriaIssuePlace = "BOGOTA DC"
-            zyBecomeOcr.zyRegistraduria?.registraduriaName = "IVAN"
-            zyBecomeOcr.zyRegistraduria?.registraduriaMiddleName = "ALEXANDRE"
-            zyBecomeOcr.zyRegistraduria?.registraduriaSurname = "CACERES"
-            zyBecomeOcr.zyRegistraduria?.registraduriaSecondSurname = "ZEVALLOS"*/
-            
+                        
             return
         }
         
@@ -220,46 +208,51 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         zyBecomeOcr.zyRegistraduria?.deErrorRegistraduria = ZyOcrErrorEnum.EXITO.descripcion
         
         let registraduria = responseIV.registryInformation
-        if let ageRange = registraduria["ageRange"] as? String {
-            zyBecomeOcr.zyRegistraduria?.registraduriaAgeRange = String(format: "%f", ageRange)
+        if let dataRegistraduria = registraduria["data"] as? NSDictionary {
+            print("data Registraduria")
+            if let ageRange = dataRegistraduria["ageRange"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registraduriaAgeRange = ageRange
+
+            }
             
+            if let documentNumber = dataRegistraduria["documentNumber"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registraduriaDocumentNumber =  documentNumber
+                
+            }
+            if let emissionDate = dataRegistraduria["emissionDate"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registraduriaEmissionDate =  emissionDate
+                
+            }
+            if let fullName = dataRegistraduria["fullName"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registraduriaFullName = fullName
+                
+            }
+            if let gender = dataRegistraduria["gender"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registraduriaGender =  gender
+                
+            }
+            if let issuePlace = dataRegistraduria["issuePlace"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registraduriaIssuePlace = issuePlace
+                
+            }
+            if let middleName = dataRegistraduria["middleName"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registraduriaMiddleName = middleName
+                
+            }
+            if let name = dataRegistraduria["name"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registraduriaName =  name
+                
+            }
+            if let surname = dataRegistraduria["surname"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registraduriaSurname =  surname
+                
+            }
+            if let secondSurname = dataRegistraduria["secondSurname"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registraduriaSecondSurname = secondSurname
+                
+            }
         }
-        if let documentNumber = registraduria["documentNumber"] as? String {
-            zyBecomeOcr.zyRegistraduria?.registraduriaDocumentNumber = String(format: "%f", documentNumber)
-            
-        }
-        if let emissionDate = registraduria["emissionDate"] as? String {
-            zyBecomeOcr.zyRegistraduria?.registraduriaEmissionDate = String(format: "%f", emissionDate)
-            
-        }
-        if let fullName = registraduria["fullName"] as? String {
-            zyBecomeOcr.zyRegistraduria?.registraduriaFullName = String(format: "%f", fullName)
-            
-        }
-        if let gender = registraduria["gender"] as? String {
-            zyBecomeOcr.zyRegistraduria?.registraduriaGender = String(format: "%f", gender)
-            
-        }
-        if let issuePlace = registraduria["issuePlace"] as? String {
-            zyBecomeOcr.zyRegistraduria?.registraduriaIssuePlace = String(format: "%f", issuePlace)
-            
-        }
-        if let middleName = registraduria["middleName"] as? String {
-            zyBecomeOcr.zyRegistraduria?.registraduriaMiddleName = String(format: "%f", middleName)
-            
-        }
-        if let name = registraduria["name"] as? String {
-            zyBecomeOcr.zyRegistraduria?.registraduriaName = String(format: "%f", name)
-            
-        }
-        if let surname = registraduria["surname"] as? String {
-            zyBecomeOcr.zyRegistraduria?.registraduriaSurname = String(format: "%f", surname)
-            
-        }
-        if let secondSurname = registraduria["secondSurname"] as? String {
-            zyBecomeOcr.zyRegistraduria?.registraduriaSecondSurname = String(format: "%f", secondSurname)
-            
-        }
+        
 
         
     }

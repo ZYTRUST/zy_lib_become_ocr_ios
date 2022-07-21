@@ -76,7 +76,6 @@ public struct ZyBecomeOcrResponse {
 }
 
 public struct ZyRegistraduria{
-    public init(){}
     public var coErrorRegistraduria:Int? 
     public var deErrorRegistraduria:String? = ""
     
