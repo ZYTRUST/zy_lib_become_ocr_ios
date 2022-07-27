@@ -448,7 +448,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zy.bm.biomatchone.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fif.fpay.pe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
@@ -470,7 +470,7 @@
 				MARKETING_VERSION = 1.1;
 				MODULE_NAME = ExampleApp;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zy.bm.biomatchone.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fif.fpay.pe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;

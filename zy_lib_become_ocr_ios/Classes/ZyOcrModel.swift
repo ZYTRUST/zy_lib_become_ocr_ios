@@ -19,13 +19,15 @@ public struct ZyOcrRequest {
     public var fullFrontImage: UIImage?
     public var backImage: UIImage?
     public var barcodeResult: String?
-
+    public var barcodeResultData: Data?
+    
     public var allowLibraryLoading: Bool = false
     public var formatoFecha: String = "yyyy-MM-dd"
     public var stringTextName:String?
     public var becomePais:String?
     public var becomeNroDoc:String?
-
+    public var rawValue:Int?
+    public var isoAlpha2CountryCode:String?
 
     //public var validationTypes: String = "VIDEO/DNI"
 }
@@ -51,14 +53,17 @@ public struct ZyBecomeOcrResponse {
     public var dateOfExpiry: String?
     public var age: String?
     public var dateOfBirth: String?
+    public var dateOfIssue: String?
     public var mrzText: String?
     public var sex: String?
     var barcodeResult: String?
-    var barcodeResultData: String?
+    var barcodeResultData: Data?
     public var frontImage: UIImage?
     public var backImage: UIImage?
     public var fullFronImage: UIImage?
     public var fullBackImage: UIImage?
+    public var rawValue:Int?
+    
     var message: String?
     public var qualityScore:String?
     public var livenessScore:String?

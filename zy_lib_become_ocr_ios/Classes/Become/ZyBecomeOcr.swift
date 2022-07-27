@@ -32,10 +32,10 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         
         var  nameStringFile = request.stringTextName ?? "zyLocalizable"
         
-        let bdivConfig = BDIVConfig(token: request.token!,
+        let bdivConfig = BDIVConfig(ItFirstTransaction: true,
+                                    token: request.token!,
                                     contractId: request.contractId!,
-                                    userId: request.userId!,
-                                    ItFirstTransaction: true ,
+                                    userId: request.userId! ,
                                     customLocalizationFileName: nameStringFile )
         
         print("bdivConfig \(String(describing: bdivConfig))")
@@ -58,22 +58,27 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             switch (request.becomePais?.uppercased() ) {
             case "CO":
                 print("===>>> DOCUMENTO COLOMBIA")
-                bdivConfig = BDIVConfig(token: request.token!,
+                bdivConfig = BDIVConfig(ItFirstTransaction: false,
+                                        token: request.token!,
                                         contractId: request.contractId!,
                                         userId: request.userId!,
                                         documentNumber: request.becomeNroDoc!,
-                                        ItFirstTransaction: false,
+                                        isoAlpha2CountryCode: request.isoAlpha2CountryCode!,
+                                        type: request.rawValue!,
                                         imgDataFullFront: (request.fullFrontImage!.pngData()!) ,
                                         imgDataCroppetBack:  request.backImage!.pngData()! ,
                                         barcodeResultData: request.barcodeResult!)
                 break
             case "PE":
                 print("===>>> DOCUMENTO PERU")
-                bdivConfig = BDIVConfig(token: request.token!,
+                bdivConfig = BDIVConfig(ItFirstTransaction: false,
+                                        token: request.token!,
                                         contractId: request.contractId!,
                                         userId: request.userId!,
-                                        ItFirstTransaction: false,
-                                        imgDataFullFront: (request.fullFrontImage!.pngData()!))
+                                        isoAlpha2CountryCode: request.isoAlpha2CountryCode!,
+                                        type: request.rawValue!,
+                                        imgDataFullFront: (request.fullFrontImage!.pngData()!),
+                                        barcodeResultData: request.barcodeResult!)
                 break
             default:
                 print("===>>> DEFAULT ERROR")
@@ -123,7 +128,8 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.ocrIsoAlpha3CountryCode = responseIV.isoAlpha2CountryCode
             zyBecomeOcr.ocrIsoNumericCountryCode = responseIV.isoNumericCountryCode
             zyBecomeOcr.placeOfBirth = responseIV.placeOfBirth
-            
+            zyBecomeOcr.rawValue = responseIV.type.rawValue
+
             do{
                 if (responseIV.lastName != nil && responseIV.lastName != ""){
                     let apellidos = responseIV.lastName.components(separatedBy: "\n")
@@ -135,21 +141,21 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
                         zyBecomeOcr.apMaterno = try? apellidos[1]
                     }
                 }
-                
-                
             } catch{
                 zyBecomeOcr.apPaterno = ""
                 zyBecomeOcr.apPaterno = ""
                 
             }
-            
+            zyBecomeOcr.dateOfIssue =  responseIV.dateOfIssue.stringByFormatter(format: self.request.formatoFecha) 
             
             zyBecomeOcr.dateOfExpiry = responseIV.dateOfExpiry.stringByFormatter(format: self.request.formatoFecha)
             zyBecomeOcr.dateOfBirth = responseIV.dateOfBirth.stringByFormatter(format: self.request.formatoFecha)
             zyBecomeOcr.age = String(responseIV.age)
             zyBecomeOcr.sex = responseIV.sex
             zyBecomeOcr.mrzText = responseIV.mrzText
+            
             zyBecomeOcr.barcodeResult = responseIV.barcodeResult
+            zyBecomeOcr.barcodeResultData = responseIV.barcodeResultData
             zyBecomeOcr.responseStatus = String(describing: responseIV.responseStatus)
         }
         else {

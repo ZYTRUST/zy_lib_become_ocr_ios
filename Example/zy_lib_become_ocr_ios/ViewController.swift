@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTgzODc4NDAsIm5iZiI6MTY1ODM4Nzg0MCwianRpIjoiNmY1ZTU1NDMtYjM0My00ZjJmLThjYzItY2YxZjc3YTcxZTFkIiwiZXhwIjoxNjU4MzkxNDQwLCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsInBlcm1pc3Npb24iOm51bGwsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.r-meo-7Hbz6TLyl1VxeGbeBCVG9xRVruwiy8xY7Det8"
+    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTg5MzM0NjksIm5iZiI6MTY1ODkzMzQ2OSwianRpIjoiNDkxN2RmMmEtYmYzYS00OGM4LWFkYzEtYzRmYTFjMjc3ZDMyIiwiZXhwIjoxNjU4OTM3MDY5LCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsInBlcm1pc3Npb24iOm51bGwsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.4kym8Ux1lM3_QvdLjwarEaDa-obPmyFYhxe_xSBlnOQ"
     
     func capturar(){
         
@@ -57,12 +57,16 @@ class ViewController: UIViewController {
         var ocrRequest = ZyOcrRequest()
         ocrRequest.contractId = "46"
         ocrRequest.token = token
-        ocrRequest.userId = "3046"
-        ocrRequest.becomePais = "CO"
+        let mytime = Date()
+        let format = DateFormatter()
+        format.dateFormat = "yyMMddHHmmss"
+        
+        ocrRequest.userId = "3046" + "_" + format.string(from: mytime)
+        ocrRequest.becomePais = "PE"
         ocrRequest.formatoFecha = "dd/MM/yy"
         ocrRequest.allowLibraryLoading = true
         ocrRequest.stringTextName = "zyLocalizable"
-
+        print("userId : \(ocrRequest.userId)")
         ocrBio.capturar(request: ocrRequest, validarAutenticidad: true)
         { (result:(ZyOcrResult<ZyOcrResponse, ZyOcrError>)) in
             switch result {
@@ -83,7 +87,7 @@ class ViewController: UIViewController {
                     self.tvDateBirth.text = ocr.dateOfBirth
                     self.tvMrz.text = ocr.mrzText
                     
-                self.tvResult.text = "statusCode:\(ocr.statusCode) qualityScore:\(ocr.qualityScore) livenessScore:\(ocr.livenessScore)  livenessProbability:\(ocr.livenessProbability) apPaterno:\(ocr.apPaterno) apMaterno:\(ocr.apMaterno) placeBirth:\(ocr.placeOfBirth) registraduriaName:\(ocr.zyRegistraduria?.registraduriaName) registraduriaNuDocu:\(ocr.zyRegistraduria?.registraduriaDocumentNumber)"
+                self.tvResult.text = "statusCode:\(ocr.statusCode) qualityScore:\(ocr.qualityScore) livenessScore:\(ocr.livenessScore)  livenessProbability:\(ocr.livenessProbability) apPaterno:\(ocr.apPaterno) apMaterno:\(ocr.apMaterno) placeBirth:\(ocr.placeOfBirth) DateOfIssue:\(ocr.dateOfIssue) registraduriaName:\(ocr.zyRegistraduria?.registraduriaName) registraduriaNuDocu:\(ocr.zyRegistraduria?.registraduriaDocumentNumber)"
                 
                 print("\(response.zyBecomeOcr)")
 

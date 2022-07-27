@@ -78,8 +78,10 @@ public class ZyOcr {
                     secondRequest.fullFrontImage = response.zyBecomeOcr.fullFronImage!
                     secondRequest.backImage = response.zyBecomeOcr.backImage
                     secondRequest.barcodeResult = response.zyBecomeOcr.barcodeResult
+                    secondRequest.barcodeResultData = response.zyBecomeOcr.barcodeResultData
+                    secondRequest.rawValue = response.zyBecomeOcr.rawValue
+                    secondRequest.isoAlpha2CountryCode = response.zyBecomeOcr.ocrIsoAlpha2CountryCode
                     self.enviar(request:secondRequest ,zyOcrResponse:response ,completion:completion)
-                    
                     
                 }else{
                     self.vc.dismiss(animated: false)
@@ -109,6 +111,7 @@ public class ZyOcr {
               let _ = request.fullFrontImage,
               let _ = request.backImage,
               let _ = request.barcodeResult,
+              let _ = request.rawValue,
               let _ = request.contractId else {
             
             completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.PARAMETROS_INCOMPLETOS.rawValue,
