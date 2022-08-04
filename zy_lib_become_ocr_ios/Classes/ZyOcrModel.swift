@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Microblink
 import UIKit
 
 public struct ZyOcrRequest {
@@ -27,6 +28,7 @@ public struct ZyOcrRequest {
     public var becomePais:String?
     public var becomeNroDoc:String?
     public var rawValue:Int?
+    public var typeDoc:MBType?
     public var isoAlpha2CountryCode:String?
 
     //public var validationTypes: String = "VIDEO/DNI"
@@ -63,7 +65,8 @@ public struct ZyBecomeOcrResponse {
     public var fullFronImage: UIImage?
     public var fullBackImage: UIImage?
     public var rawValue:Int?
-    
+    public var typeDoc:MBType?
+
     var message: String?
     public var qualityScore:String?
     public var livenessScore:String?

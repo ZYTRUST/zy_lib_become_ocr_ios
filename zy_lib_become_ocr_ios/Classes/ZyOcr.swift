@@ -80,6 +80,7 @@ public class ZyOcr {
                     secondRequest.barcodeResult = response.zyBecomeOcr.barcodeResult
                     secondRequest.barcodeResultData = response.zyBecomeOcr.barcodeResultData
                     secondRequest.rawValue = response.zyBecomeOcr.rawValue
+                    secondRequest.typeDoc = response.zyBecomeOcr.typeDoc
                     secondRequest.isoAlpha2CountryCode = response.zyBecomeOcr.ocrIsoAlpha2CountryCode
                     self.enviar(request:secondRequest ,zyOcrResponse:response ,completion:completion)
                     

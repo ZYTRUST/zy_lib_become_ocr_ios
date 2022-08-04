@@ -27,11 +27,8 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
                   completion:@escaping CallbackOcr){
         
         self.request = request
-        
         self.callback = completion
-        
         var  nameStringFile = request.stringTextName ?? "zyLocalizable"
-        
         let bdivConfig = BDIVConfig(ItFirstTransaction: true,
                                     token: request.token!,
                                     contractId: request.contractId!,
@@ -129,6 +126,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.ocrIsoNumericCountryCode = responseIV.isoNumericCountryCode
             zyBecomeOcr.placeOfBirth = responseIV.placeOfBirth
             zyBecomeOcr.rawValue = responseIV.type.rawValue
+            zyBecomeOcr.typeDoc = responseIV.type
 
             do{
                 if (responseIV.lastName != nil && responseIV.lastName != ""){
