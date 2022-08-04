@@ -198,6 +198,17 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             return
         }
         
+        if(zyBecomeOcr.typeDoc != .typeId){
+            print("===>> Documento no es un Documento Nacional")
+            
+            zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.rawValue
+            zyBecomeOcr.zyRegistraduria?.deErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.descripcion
+            return
+        }
+        
+        
+        let registraduria = responseIV.registryInformation
+
         if (responseIV.registryInformation.isEmpty ){
             print("===>> responseIV.registryInformation isEmpty")
             zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.rawValue
@@ -206,12 +217,11 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             return
         }
         
-        print("===>> ParserData Registraduria")
+        print("===>> ParserData Registraduria: \(registraduria["data"] )")
         
         zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.EXITO.rawValue
         zyBecomeOcr.zyRegistraduria?.deErrorRegistraduria = ZyOcrErrorEnum.EXITO.descripcion
         
-        let registraduria = responseIV.registryInformation
         if let dataRegistraduria = registraduria["data"] as? NSDictionary {
             print("data Registraduria")
             if let ageRange = dataRegistraduria["ageRange"] as? String {

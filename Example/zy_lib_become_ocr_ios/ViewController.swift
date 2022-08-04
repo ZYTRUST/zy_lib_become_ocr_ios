@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTk1ODU1NzIsIm5iZiI6MTY1OTU4NTU3MiwianRpIjoiMDUxNzA4MDAtZTM1Ni00NjQzLWExNWQtYjFjNWQ1NWZiZWRjIiwiZXhwIjoxNjU5NTg5MTcyLCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsInBlcm1pc3Npb24iOm51bGwsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.5KZvK2fNmm21okSA2RtCirFmzz-kpFu-x1vbHOYyiB4"
+    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTk1ODk5NjYsIm5iZiI6MTY1OTU4OTk2NiwianRpIjoiOWZlMDkzMjUtNDIyYi00NmUzLWFjN2UtYjAxYzU2NGIxN2ZjIiwiZXhwIjoxNjU5NTkzNTY2LCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsInJvbGVfaWQiOjEsInBlcm1pc3Npb24iOm51bGwsImNvbXBhbnlfaW5mbyI6eyJjb21wYW55X2NvdW50cnkiOiJDMCIsImNvbXBhbnlfc3RhdGUiOiIiLCJjb21wYW55X2FkZHJlc3MiOiJOQSIsImNvbXBhbnlfbGVnYWxfcmVwcmVzZW50YXRpdmUiOiJOQSIsImNvbXBhbnlfcGhvbmUiOiIwIn19LCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.EZG5n-za6yT36QfomAWnSM9OSEFkf6sozwA667l9iYI"
     
     func capturar(){
         
@@ -90,6 +90,7 @@ class ViewController: UIViewController {
                 self.tvResult.text = "statusCode:\(ocr.statusCode) qualityScore:\(ocr.qualityScore) livenessScore:\(ocr.livenessScore)  livenessProbability:\(ocr.livenessProbability) apPaterno:\(ocr.apPaterno) apMaterno:\(ocr.apMaterno) placeBirth:\(ocr.placeOfBirth) DateOfIssue:\(ocr.dateOfIssue) registraduriaName:\(ocr.zyRegistraduria?.registraduriaName) registraduriaNuDocu:\(ocr.zyRegistraduria?.registraduriaDocumentNumber) tipo:\(ocr.typeDoc?.rawValue)"
                 
                 print("\(response.zyBecomeOcr)")
+            
 
                 case .error(let error):
                     self.tvResult.text = error.deError
