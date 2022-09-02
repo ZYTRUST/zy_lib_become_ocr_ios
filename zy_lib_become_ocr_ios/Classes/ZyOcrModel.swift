@@ -30,7 +30,9 @@ public struct ZyOcrRequest {
     public var rawValue:Int?
     public var typeDoc:MBType?
     public var isoAlpha2CountryCode:String?
+    public var nationality:String?
 
+    
     //public var validationTypes: String = "VIDEO/DNI"
 }
 
@@ -66,7 +68,8 @@ public struct ZyBecomeOcrResponse {
     public var fullBackImage: UIImage?
     public var rawValue:Int?
     public var typeDoc:MBType?
-
+    public var nationality: String?
+    
     var message: String?
     public var qualityScore:String?
     public var livenessScore:String?

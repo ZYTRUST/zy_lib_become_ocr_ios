@@ -82,6 +82,7 @@ public class ZyOcr {
                     secondRequest.rawValue = response.zyBecomeOcr.rawValue
                     secondRequest.typeDoc = response.zyBecomeOcr.typeDoc
                     secondRequest.isoAlpha2CountryCode = response.zyBecomeOcr.ocrIsoAlpha2CountryCode
+                    secondRequest.nationality = response.zyBecomeOcr.nationality
                     self.enviar(request:secondRequest ,zyOcrResponse:response ,completion:completion)
                     
                 }else{

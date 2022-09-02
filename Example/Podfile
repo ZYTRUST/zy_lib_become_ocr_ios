@@ -4,7 +4,7 @@ platform :ios, '12.0'
 
 target 'zy_lib_become_ocr_ios_Example' do
   pod 'zy_lib_become_ocr_ios', :path => '../'
-  pod 'BecomeDigitalV', :git => 'https://github.com/ZYTRUST/BecomeDigitalV.git', :tag => '1.0'
+  pod 'BecomeDigitalV', :git => 'https://github.com/ZYTRUST/BecomeDigitalV.git', :tag => '1.1'
 
   
 end

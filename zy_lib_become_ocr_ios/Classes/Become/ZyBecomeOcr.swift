@@ -127,6 +127,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.placeOfBirth = responseIV.placeOfBirth
             zyBecomeOcr.rawValue = responseIV.type.rawValue
             zyBecomeOcr.typeDoc = responseIV.type
+            zyBecomeOcr.nationality = responseIV.nationality
 
             do{
                 if (responseIV.lastName != nil && responseIV.lastName != ""){
