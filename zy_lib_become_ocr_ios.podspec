@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'zy_lib_become_ocr_ios'
-  s.version          = '7.1.4'
+  s.version          = '7.1.5'
   s.summary          = 'A short description of zy_lib_become_ocr_ios.'
 
 # This description is used to generate tags and improve search results.
@@ -44,6 +44,8 @@ TODO: Add long description of the pod here.
   s.swift_version = '5.0'
   
   s.ios.requires_arc = false
+  
+  s.static_framework = true
 
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
@@ -51,6 +53,6 @@ TODO: Add long description of the pod here.
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'PPBlinkID', '~> 5.16.1'
   s.dependency 'Alamofire', '~> 4.8.2'
-  s.dependency 'BecomeDigitalV', '~> 1.1'
+  s.dependency 'BecomeDigitalV', '~> 1.5'
   
 end

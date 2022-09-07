@@ -90,7 +90,6 @@ class ViewController: UIViewController {
                 self.tvResult.text = "statusCode:\(ocr.statusCode) qualityScore:\(ocr.qualityScore) livenessScore:\(ocr.livenessScore)  livenessProbability:\(ocr.livenessProbability) apPaterno:\(ocr.apPaterno) apMaterno:\(ocr.apMaterno) placeBirth:\(ocr.placeOfBirth) DateOfIssue:\(ocr.dateOfIssue) registraduriaName:\(ocr.zyRegistraduria?.registraduriaName) registraduriaNuDocu:\(ocr.zyRegistraduria?.registraduriaDocumentNumber) tipo:\(ocr.typeDoc?.rawValue)   nacionalidad:\(ocr.nationality)"
                 
                 print("\(response.zyBecomeOcr)")
-            
 
                 case .error(let error):
                     self.tvResult.text = error.deError
