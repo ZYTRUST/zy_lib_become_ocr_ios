@@ -278,7 +278,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-zy_lib_become_ocr_ios_Example/Pods-zy_lib_become_ocr_ios_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/BecomeDigitalV/BecomeDigitalV.framework/BecomeDigitalV",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PPBlinkID/Microblink.framework/Microblink",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Microblink/Microblink.framework/Microblink",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (

@@ -49,7 +49,6 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         
         self.callback = completion
         self.zyOcrResponseCapturar = zyOcrResponse
-        
         if(request.becomePais != nil && request.becomePais != ""){
             print("===>>>becomePais: \(request.becomePais)")
             switch (request.becomePais?.uppercased() ) {
@@ -116,10 +115,18 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.fullBackImage = responseIV.fullBackImage
             zyBecomeOcr.fullFronImage = responseIV.fullFronImage
             zyBecomeOcr.barcodeResult = responseIV.barcodeResult
-
+            
             zyBecomeOcr.firstName = responseIV.firstName
             zyBecomeOcr.lastName = responseIV.lastName
-            zyBecomeOcr.documentNumber = responseIV.documentNumber
+            
+            
+            if(responseIV.isoAlpha2CountryCode.caseInsensitiveCompare("CO") == .orderedSame &&
+               responseIV.nationality.caseInsensitiveCompare("COL") == .orderedSame){
+                zyBecomeOcr.documentNumber = responseIV.personalIdNumber
+            }else{
+                zyBecomeOcr.documentNumber = responseIV.documentNumber
+            }
+            
             zyBecomeOcr.ocrPais = responseIV.countryName
             zyBecomeOcr.ocrIsoAlpha2CountryCode = responseIV.isoAlpha2CountryCode
             zyBecomeOcr.ocrIsoAlpha3CountryCode = responseIV.isoAlpha2CountryCode
@@ -128,7 +135,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.rawValue = responseIV.type.rawValue
             zyBecomeOcr.typeDoc = responseIV.type
             zyBecomeOcr.nationality = responseIV.nationality
-
+            
             do{
                 if (responseIV.lastName != nil && responseIV.lastName != ""){
                     let apellidos = responseIV.lastName.components(separatedBy: "\n")
@@ -145,7 +152,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
                 zyBecomeOcr.apPaterno = ""
                 
             }
-            zyBecomeOcr.dateOfIssue =  responseIV.dateOfIssue.stringByFormatter(format: self.request.formatoFecha) 
+            zyBecomeOcr.dateOfIssue =  responseIV.dateOfIssue.stringByFormatter(format: self.request.formatoFecha)
             
             zyBecomeOcr.dateOfExpiry = responseIV.dateOfExpiry.stringByFormatter(format: self.request.formatoFecha)
             zyBecomeOcr.dateOfBirth = responseIV.dateOfBirth.stringByFormatter(format: self.request.formatoFecha)
@@ -190,7 +197,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         print("===>> Informacion de Registraduria")
         print("===>> Informacion de Registraduria CO: -> \(responseIV.registryInformation)")
         zyBecomeOcr.zyRegistraduria =  ZyRegistraduria()
-
+        
         if (zyBecomeOcr.ocrIsoAlpha2CountryCode != "CO"){
             print("===>> BECOME_BECOME_REGISTRADURIA_DOCUMENTO_NO_COLOMBIA")
             
@@ -209,12 +216,12 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         
         
         let registraduria = responseIV.registryInformation
-
+        
         if (responseIV.registryInformation.isEmpty ){
             print("===>> responseIV.registryInformation isEmpty")
             zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.rawValue
             zyBecomeOcr.zyRegistraduria?.deErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.descripcion
-                        
+            
             return
         }
         
@@ -227,7 +234,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             print("data Registraduria")
             if let ageRange = dataRegistraduria["ageRange"] as? String {
                 zyBecomeOcr.zyRegistraduria?.registraduriaAgeRange = ageRange
-
+                
             }
             
             if let documentNumber = dataRegistraduria["documentNumber"] as? String {
@@ -268,7 +275,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             }
         }
         
-
+        
         
     }
     
