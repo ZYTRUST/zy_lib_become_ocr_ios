@@ -150,7 +150,7 @@ enum ZyOcrErrorEnum:Int {
     case PARAMETROS_INCOMPLETOS_CONTRACTID = 9203
     case CAPTURA_OCR_ERROR_EN_CAPTURA_DOC = 9800
     case CAPTURA_OCR_ERROR_FRONT_IMG_EMPTY = 9801
-    case CAPTURA_OCR_ERROR_OBTENER_VALIDACION_DOC = 9802
+    case CAPTURA_OCR_ERROR_WS_BECOME = 9802
     case CAPTURA_OCR_ERROR_EN_VALIDACION_DOC = 9803
     case NO_SIMULADOR = 9804
     case NO_BIO_PAIS = 9805
@@ -161,8 +161,8 @@ enum ZyOcrErrorEnum:Int {
     case BECOME_WS_BECOME_NO_REGISTRY = 9812
     case BECOME_BECOME_REGISTRADURIA_DOCUMENTO_NO_COLOMBIA = 9813
     case BECOME_ERROR_DOC_PAIS_NO_SOPORTADO = 9814
-    case BECOME_ERROR_DOCUMENTO_PAIS_ERROR = 9815
     case BECOME_ERROR_BECOME_NOREGISTRY_DATA = 9816
+    case BECOME_ERROR_REVISAR_DESCRIPCION = 9817
 
     
     
@@ -175,8 +175,8 @@ enum ZyOcrErrorEnum:Int {
         case .CAPTURA_OCR_ERROR_FRONT_IMG_EMPTY:
             return "\(self.rawValue):Error de obtencion OCR , no se obtuvo imagen deontal del documento"
             
-        case .CAPTURA_OCR_ERROR_OBTENER_VALIDACION_DOC:
-            return "\(self.rawValue):Documento no legile , wsBecome no response"
+        case .CAPTURA_OCR_ERROR_WS_BECOME:
+            return "\(self.rawValue):Documento no legile , wsBecome no response - timeOut become"
             
         case .CAPTURA_OCR_ERROR_EN_VALIDACION_DOC:
             return "\(self.rawValue):Error en WS Validacion Documento , WS OCR_BECOME"
@@ -233,7 +233,9 @@ enum ZyOcrErrorEnum:Int {
             
         case .PARAMETROS_INCOMPLETOS_CONTRACTID:
             return "\(self.rawValue):Become contractId invalido"
-  
+        case .BECOME_ERROR_REVISAR_DESCRIPCION:
+            return "\(self.rawValue):error Become : Revisar Descripcion : "
+            
         default:
             return ""
         }

@@ -45,7 +45,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
                       zyOcrResponse:ZyOcrResponse?,completion:@escaping CallbackOcr){
         
         //print(String(describing: request))
-        var bdivConfig:BDIVConfig? = nil
+        //var bdivConfig:BDIVConfig?
         
         self.callback = completion
         self.zyOcrResponseCapturar = zyOcrResponse
@@ -54,7 +54,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             switch (request.becomePais?.uppercased() ) {
             case "CO":
                 print("===>>> DOCUMENTO COLOMBIA")
-                bdivConfig = BDIVConfig(ItFirstTransaction: false,
+                let bdivConfigCo = BDIVConfig(ItFirstTransaction: false,
                                         token: request.token!,
                                         contractId: request.contractId!,
                                         userId: request.userId!,
@@ -64,10 +64,13 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
                                         imgDataFullFront: (request.fullFrontImage!.pngData()!) ,
                                         imgDataCroppetBack:  request.backImage!.pngData()! ,
                                         barcodeResultData: request.barcodeResult!)
+                BDIVCallBack.sharedInstance.delegate = self
+                BDIVCallBack.sharedInstance.register(bdivConfig: bdivConfigCo)
+                  
                 break
             case "PE":
                 print("===>>> DOCUMENTO PERU")
-                bdivConfig = BDIVConfig(ItFirstTransaction: false,
+                let bdivConfigPe = BDIVConfig(ItFirstTransaction: false,
                                         token: request.token!,
                                         contractId: request.contractId!,
                                         userId: request.userId!,
@@ -75,6 +78,8 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
                                         type: request.rawValue!,
                                         imgDataFullFront: (request.fullFrontImage!.pngData()!),
                                         barcodeResultData: request.barcodeResult!)
+                BDIVCallBack.sharedInstance.delegate = self
+                BDIVCallBack.sharedInstance.register(bdivConfig: bdivConfigPe)
                 break
             default:
                 print("===>>> DEFAULT ERROR")
@@ -88,15 +93,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             callback(.error(ZyLibOcrError(coError:ZyOcrErrorEnum.NO_BIO_PAIS.rawValue ,
                                           deError:ZyOcrErrorEnum.NO_BIO_PAIS.descripcion )))
             return
-            
         }
-        
-        
-        //imgData: (UIImagePNGRepresentation((request.fullFronImage?.imageFromBase64!)!)!))
-        print("bdivConfig \(String(describing: bdivConfig))")
-        
-        BDIVCallBack.sharedInstance.delegate = self
-        BDIVCallBack.sharedInstance.register(bdivConfig: bdivConfig!)
         
     }
     
@@ -123,7 +120,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             if(responseIV.isoAlpha2CountryCode.caseInsensitiveCompare("CO") == .orderedSame &&
                responseIV.nationality.caseInsensitiveCompare("COL") == .orderedSame){
                 zyBecomeOcr.documentNumber = responseIV.personalIdNumber
-            }else{
+            }else {
                 zyBecomeOcr.documentNumber = responseIV.documentNumber
             }
             
@@ -281,7 +278,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
     
     public  func BDIVResponseError(error: String) {
         let errorNoSpace = error.stringByRemovingAll(subStrings: [" "]).uppercased()
-        print("zyttt \(errorNoSpace)")
+        print("zy BECOME WS Response : \(errorNoSpace)")
         
         //TOKENHASEXPIRED
         if errorNoSpace == "CANCELEDBYUSER"{
@@ -301,9 +298,14 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
                                           deError: ZyOcrErrorEnum.BECOME_WS_BECOME_NO_REGISTRY.descripcion)))
             return
         }
+        else if errorNoSpace == "THEREQUESTTIMEDOUT" {
+            callback(.error(ZyLibOcrError(coError:ZyOcrErrorEnum.CAPTURA_OCR_ERROR_WS_BECOME.rawValue ,
+                                          deError: ZyOcrErrorEnum.CAPTURA_OCR_ERROR_WS_BECOME.descripcion)))
+            return
+        }
         
-        callback(.error(ZyLibOcrError(coError:ZyOcrErrorEnum.INICIALIZACION_ERROR.rawValue ,
-                                      deError: "\(ZyOcrErrorEnum.INICIALIZACION_ERROR.descripcion) ,ErrorOrigen: \(errorNoSpace)" )))
+        callback(.error(ZyLibOcrError(coError:ZyOcrErrorEnum.BECOME_ERROR_REVISAR_DESCRIPCION.rawValue ,
+                                      deError: "\(ZyOcrErrorEnum.BECOME_ERROR_REVISAR_DESCRIPCION.descripcion) ,ErrorOrigen: \(errorNoSpace)" )))
     }
     
 }
