@@ -73,17 +73,20 @@ public class ZyOcr {
             case .success(let response):
                 if validarAutenticidad{
                     
-                    var secondRequest = request
-                    secondRequest.becomeNroDoc = response.zyBecomeOcr.documentNumber
-                    secondRequest.fullFrontImage = response.zyBecomeOcr.fullFronImage!
-                    secondRequest.backImage = response.zyBecomeOcr.backImage
-                    secondRequest.barcodeResult = response.zyBecomeOcr.barcodeResult
-                    secondRequest.barcodeResultData = response.zyBecomeOcr.barcodeResultData
-                    secondRequest.rawValue = response.zyBecomeOcr.rawValue
-                    secondRequest.typeDoc = response.zyBecomeOcr.typeDoc
-                    secondRequest.isoAlpha2CountryCode = response.zyBecomeOcr.ocrIsoAlpha2CountryCode
-                    secondRequest.nationality = response.zyBecomeOcr.nationality
-                    self.enviar(request:secondRequest ,zyOcrResponse:response ,completion:completion)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        var secondRequest = request
+                        secondRequest.becomeNroDoc = response.zyBecomeOcr.documentNumber
+                        secondRequest.fullFrontImage = response.zyBecomeOcr.fullFronImage!
+                        secondRequest.backImage = response.zyBecomeOcr.backImage
+                        secondRequest.barcodeResult = response.zyBecomeOcr.barcodeResult
+                        secondRequest.barcodeResultData = response.zyBecomeOcr.barcodeResultData
+                        secondRequest.rawValue = response.zyBecomeOcr.rawValue
+                        secondRequest.typeDoc = response.zyBecomeOcr.typeDoc
+                        secondRequest.isoAlpha2CountryCode = response.zyBecomeOcr.ocrIsoAlpha2CountryCode
+                        secondRequest.nationality = response.zyBecomeOcr.nationality
+                        self.enviar(request:secondRequest ,zyOcrResponse:response ,completion:completion)
+
+                    }
                     
                 }else{
                     self.vc.dismiss(animated: false)
@@ -126,7 +129,7 @@ public class ZyOcr {
         }
         
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             self.apiOcr.enviarImagen(request: request, zyOcrResponse:zyOcrResponse)
             { (result:(ZyOcrResult<ZyOcrResponse, ZyLibOcrError>)) in
                 if(request.allowLibraryLoading){
