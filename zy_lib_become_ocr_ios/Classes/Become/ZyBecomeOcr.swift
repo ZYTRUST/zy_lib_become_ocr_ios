@@ -131,7 +131,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.placeOfBirth = responseIV.placeOfBirth
             zyBecomeOcr.rawValue = responseIV.type.rawValue
             zyBecomeOcr.typeDoc = responseIV.type.rawValue
-            zyBecomeOcr.typeDocDescription = responseIV.type.description
+            zyBecomeOcr.typeDocDescription = responseIV.type.hashValue.description
             zyBecomeOcr.nationality = responseIV.nationality
             
             do{
@@ -204,7 +204,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             return
         }
         
-        if(zyBecomeOcr.typeDoc != .typeId){
+        if(zyBecomeOcr.typeDoc != 28){
             print("===>> Documento no es un Documento Nacional")
             
             zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.rawValue

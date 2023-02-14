@@ -30,7 +30,7 @@ public struct ZyOcrRequest {
     public var becomePais:String?
     public var becomeNroDoc:String?
     public var rawValue:Int?
-    public var typeDoc:String?
+    public var typeDoc:Int?
     public var typeDocDescription:String?
 
     public var isoAlpha2CountryCode:String?
@@ -73,7 +73,7 @@ public struct ZyBecomeOcrResponse {
     public var fullFronImage: UIImage?
     public var fullBackImage: UIImage?
     public var rawValue:Int?
-    public var typeDoc:String?
+    public var typeDoc:Int?
     public var typeDocDescription:String?
     public var nationality: String?
     
