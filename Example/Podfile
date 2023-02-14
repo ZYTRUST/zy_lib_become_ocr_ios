@@ -7,6 +7,7 @@ target 'zy_lib_become_ocr_ios_Example' do
   pod 'BecomeDigitalV', :git => 'https://github.com/ZYTRUST/BecomeDigitalV.git', :tag => '2.0'
   pod 'Microblink', :git => 'https://github.com/ZYTRUST/Microblink.git', :tag => '1.1'
   #pod 'PPBlinkID', '5.20.0'
+
 end
 
 #post_install do |installer|

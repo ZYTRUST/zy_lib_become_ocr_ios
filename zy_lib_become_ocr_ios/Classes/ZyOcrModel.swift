@@ -6,7 +6,9 @@
 //
 
 import Foundation
+#if !targetEnvironment(simulator)
 import Microblink
+#endif
 import UIKit
 
 public struct ZyOcrRequest {
@@ -28,7 +30,9 @@ public struct ZyOcrRequest {
     public var becomePais:String?
     public var becomeNroDoc:String?
     public var rawValue:Int?
-    public var typeDoc:MBType?
+    public var typeDoc:String?
+    public var typeDocDescription:String?
+
     public var isoAlpha2CountryCode:String?
     public var nationality:String?
 
@@ -46,6 +50,8 @@ public struct ZyOcrResponse{
     public let deError:String="8000:OK"
     public let zyBecomeOcr:ZyBecomeOcrResponse
 }
+
+
 
 public struct ZyBecomeOcrResponse {
     public init(){}
@@ -67,7 +73,8 @@ public struct ZyBecomeOcrResponse {
     public var fullFronImage: UIImage?
     public var fullBackImage: UIImage?
     public var rawValue:Int?
-    public var typeDoc:MBType?
+    public var typeDoc:String?
+    public var typeDocDescription:String?
     public var nationality: String?
     
     var message: String?

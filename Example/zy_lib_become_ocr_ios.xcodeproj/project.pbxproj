@@ -26,14 +26,16 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		723CA6C5281397B8AE6A8B10 /* Pods_zy_lib_become_ocr_ios_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B695F350A6A3E14CB971D445 /* Pods_zy_lib_become_ocr_ios_Example.framework */; };
 		7F6854E428514A6700EB6B8C /* zyLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F6854E628514A6700EB6B8C /* zyLocalizable.strings */; };
 		7FB6FF3D282A9FAB002FD636 /* com.become.key.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7FB6FF3C282A9FAB002FD636 /* com.become.key.txt */; };
+		87DC9B48D4B10DE66B5FA163 /* Pods_zy_lib_become_ocr_ios_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B432476325F63F2FE9EAE6E /* Pods_zy_lib_become_ocr_ios_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		213347F78C131016101D8892 /* Pods-zy_lib_become_ocr_ios_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zy_lib_become_ocr_ios_Example.release.xcconfig"; path = "Target Support Files/Pods-zy_lib_become_ocr_ios_Example/Pods-zy_lib_become_ocr_ios_Example.release.xcconfig"; sourceTree = "<group>"; };
+		51DB60DAF7659B0BA88FEC95 /* Pods-zy_lib_become_ocr_ios_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zy_lib_become_ocr_ios_Example.debug.xcconfig"; path = "Target Support Files/Pods-zy_lib_become_ocr_ios_Example/Pods-zy_lib_become_ocr_ios_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		565F732170DEFDF39CD54FEB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		58779FF3CF1650310695583F /* Pods-zy_lib_become_ocr_ios_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zy_lib_become_ocr_ios_Example.release.xcconfig"; path = "Target Support Files/Pods-zy_lib_become_ocr_ios_Example/Pods-zy_lib_become_ocr_ios_Example.release.xcconfig"; sourceTree = "<group>"; };
+		5B432476325F63F2FE9EAE6E /* Pods_zy_lib_become_ocr_ios_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_zy_lib_become_ocr_ios_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* zy_lib_become_ocr_ios_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zy_lib_become_ocr_ios_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,8 +49,6 @@
 		7FB6FF3C282A9FAB002FD636 /* com.become.key.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = com.become.key.txt; sourceTree = "<group>"; };
 		91F214C964E5CDA9AA6DE13B /* zy_lib_become_ocr_ios.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = zy_lib_become_ocr_ios.podspec; path = ../zy_lib_become_ocr_ios.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		969506E31E0D68C9BB97F59E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		A792E00F78459480F1AE3F1B /* Pods-zy_lib_become_ocr_ios_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zy_lib_become_ocr_ios_Example.debug.xcconfig"; path = "Target Support Files/Pods-zy_lib_become_ocr_ios_Example/Pods-zy_lib_become_ocr_ios_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		B695F350A6A3E14CB971D445 /* Pods_zy_lib_become_ocr_ios_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_zy_lib_become_ocr_ios_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,26 +56,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				723CA6C5281397B8AE6A8B10 /* Pods_zy_lib_become_ocr_ios_Example.framework in Frameworks */,
+				87DC9B48D4B10DE66B5FA163 /* Pods_zy_lib_become_ocr_ios_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		35F4C51A0A34C66DEC5EBC5C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B695F350A6A3E14CB971D445 /* Pods_zy_lib_become_ocr_ios_Example.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		408002508CBE24A161690530 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A792E00F78459480F1AE3F1B /* Pods-zy_lib_become_ocr_ios_Example.debug.xcconfig */,
-				213347F78C131016101D8892 /* Pods-zy_lib_become_ocr_ios_Example.release.xcconfig */,
+				51DB60DAF7659B0BA88FEC95 /* Pods-zy_lib_become_ocr_ios_Example.debug.xcconfig */,
+				58779FF3CF1650310695583F /* Pods-zy_lib_become_ocr_ios_Example.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -88,7 +80,7 @@
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				408002508CBE24A161690530 /* Pods */,
-				35F4C51A0A34C66DEC5EBC5C /* Frameworks */,
+				BB45E3E1527AEE2C45C91582 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,6 +143,14 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		BB45E3E1527AEE2C45C91582 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B432476325F63F2FE9EAE6E /* Pods_zy_lib_become_ocr_ios_Example.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -158,11 +158,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "zy_lib_become_ocr_ios_Example" */;
 			buildPhases = (
-				19BA11B5BC381AEB4CD515DC /* [CP] Check Pods Manifest.lock */,
+				145283306FA80C840EF36134 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				F91F7B3E7E4B4E7CB5338EDA /* [CP] Embed Pods Frameworks */,
+				A137B12126030DC8B556D5E2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -187,6 +187,7 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = 23WN72KD4H;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
 					};
 					7F0896BE283BF16B00C10BAC = {
 						CreatedOnToolsVersion = 13.4;
@@ -230,7 +231,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		19BA11B5BC381AEB4CD515DC /* [CP] Check Pods Manifest.lock */ = {
+		145283306FA80C840EF36134 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -269,7 +270,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Setup some constants for use later on.\n# 1\n# Set bash script to exit immediately if any commands fail.\nset -e\n# 2\n# Setup some constants for use later on.\nPROJECT_NAME=\"Pods/Pods.xcodeproj\"\nPROJECT_LIB_NAME=\"zy_lib_become_ocr_ios\"\nFRAMEWORK_NAME=\"zy_lib_become_ocr_ios\"\nOUTPUT_DIR=\"${SRCROOT}/build\"\n# 3\n# If remnants from a previous build exist, delete them.\nif [ -d \"${OUTPUT_DIR}\" ]; then\nrm -rf \"${OUTPUT_DIR}\"\nfi\n# 4\n# Build the framework for device and for simulator (using\n# all needed architectures).\n\nxcodebuild -project \"${PROJECT_NAME}\" -scheme \"${PROJECT_LIB_NAME}\" -configuration Release -arch arm64  only_active_arch=no defines_module=yes -sdk \"iphoneos\" -derivedDataPath \"${OUTPUT_DIR}\"\n\nxcodebuild -project \"${PROJECT_NAME}\" -scheme \"${PROJECT_LIB_NAME}\" -configuration Release -arch x86_64  only_active_arch=no defines_module=yes -sdk \"iphonesimulator\"  -derivedDataPath \"${OUTPUT_DIR}\"\n\n# 5\n# Remove .framework file if exists from previous run.\nif [ -d \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework\" ]; then\nrm -rf \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework\"\nfi\n# 6\n# Copy the device version of framework.\ncp -r \"${OUTPUT_DIR}/Release-iphoneos/${PROJECT_LIB_NAME}/${FRAMEWORK_NAME}.framework\" \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework\"\n# 7\n# Replace the framework executable within the framework with\n# a new version created by merging the device and simulator\n# frameworks' executables with lipo.\nlipo -create -output \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${OUTPUT_DIR}/Release-iphoneos/${PROJECT_LIB_NAME}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\" \"${OUTPUT_DIR}/Release-iphonesimulator/${PROJECT_LIB_NAME}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}\"\n# 8\n# Copy the Swift module mappings for the simulator into the\n# framework. The device mappings already exist from step 6.\ncp -r \"${OUTPUT_DIR}/Release-iphonesimulator/${PROJECT_LIB_NAME}/${FRAMEWORK_NAME}.framework/Modules/${FRAMEWORK_NAME}.swiftmodule/\" \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.framework/Modules/${FRAMEWORK_NAME}.swiftmodule\"\n# 9 \n# Convenience step to open the project's directory in Finder\nopen \"${OUTPUT_DIR}\"\n\n";
 		};
-		F91F7B3E7E4B4E7CB5338EDA /* [CP] Embed Pods Frameworks */ = {
+		A137B12126030DC8B556D5E2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -434,44 +435,58 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A792E00F78459480F1AE3F1B /* Pods-zy_lib_become_ocr_ios_Example.debug.xcconfig */;
+			baseConfigurationReference = 51DB60DAF7659B0BA88FEC95 /* Pods-zy_lib_become_ocr_ios_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 23WN72KD4H;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zy_lib_become_ocr_ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fif.fpay.pe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 213347F78C131016101D8892 /* Pods-zy_lib_become_ocr_ios_Example.release.xcconfig */;
+			baseConfigurationReference = 58779FF3CF1650310695583F /* Pods-zy_lib_become_ocr_ios_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 23WN72KD4H;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zy_lib_become_ocr_ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				MODULE_NAME = ExampleApp;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fif.fpay.pe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -506,7 +521,7 @@
 				607FACEE1AFB9204008FA782 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "zy_lib_become_ocr_ios_Example" */ = {
 			isa = XCConfigurationList;
@@ -515,7 +530,7 @@
 				607FACF11AFB9204008FA782 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		7F0896C1283BF16B00C10BAC /* Build configuration list for PBXAggregateTarget "Universal-zy_lib_become_ocr_ios" */ = {
 			isa = XCConfigurationList;
@@ -524,7 +539,7 @@
 				7F0896C0283BF16B00C10BAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

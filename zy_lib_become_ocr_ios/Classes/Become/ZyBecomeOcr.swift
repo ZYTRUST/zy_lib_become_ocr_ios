@@ -130,7 +130,8 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             zyBecomeOcr.ocrIsoNumericCountryCode = responseIV.isoNumericCountryCode
             zyBecomeOcr.placeOfBirth = responseIV.placeOfBirth
             zyBecomeOcr.rawValue = responseIV.type.rawValue
-            zyBecomeOcr.typeDoc = responseIV.type
+            zyBecomeOcr.typeDoc = responseIV.type.rawValue
+            zyBecomeOcr.typeDocDescription = responseIV.type.description
             zyBecomeOcr.nationality = responseIV.nationality
             
             do{

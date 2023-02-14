@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjkyMTI1OTQsIm5iZiI6MTY2OTIxMjU5NCwianRpIjoiMDQ3OTg5MDYtYjYyYS00OTlmLWE4NjYtNTIzY2ZjZGI0ODU0IiwiZXhwIjoxNjY5MjE2MTk0LCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsImlzX2FjdGl2ZSI6dHJ1ZSwicm9sZV9pZCI6MSwicGVybWlzc2lvbiI6bnVsbCwiY29tcGFueV9pbmZvIjp7ImNvbXBhbnlfY291bnRyeSI6IkMwIiwiY29tcGFueV9zdGF0ZSI6IiIsImNvbXBhbnlfYWRkcmVzcyI6Ik5BIiwiY29tcGFueV9sZWdhbF9yZXByZXNlbnRhdGl2ZSI6Ik5BIiwiY29tcGFueV9waG9uZSI6IjAifX0sImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.CLOa6l0arOMO11ze8KBjI0iSrZ2gGuoE7UKCVmXvO50"
+    let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NzQ1NDE4MzMsIm5iZiI6MTY3NDU0MTgzMywianRpIjoiMWI1MjliZWItNjY0NS00MmY4LTliMmYtNGMyMTVmMjk4MjQ3IiwiZXhwIjoxNjc0NTQ1NDMzLCJpZGVudGl0eSI6eyJjbGllbnRfaWQiOiJ6eXRydXN0X3Rlc3QiLCJjb21wYW55X2lkIjozOCwiaXNfZGFzaGJvYXJkX3VzZXIiOmZhbHNlLCJpc19yZXZpZXdlciI6ZmFsc2UsImlzX2FjdGl2ZSI6dHJ1ZSwicm9sZV9pZCI6MSwicGVybWlzc2lvbiI6bnVsbCwiY29tcGFueV9pbmZvIjp7ImNvbXBhbnlfY291bnRyeSI6IkMwIiwiY29tcGFueV9zdGF0ZSI6IiIsImNvbXBhbnlfYWRkcmVzcyI6Ik5BIiwiY29tcGFueV9sZWdhbF9yZXByZXNlbnRhdGl2ZSI6Ik5BIiwiY29tcGFueV9waG9uZSI6IjAifX0sImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.gCSc-u3dOMUjPsK2kgssAyqL0D-uEJ1Ute7FUmKpFUI"
     
     func capturar(){
         
@@ -87,7 +87,7 @@ class ViewController: UIViewController {
                     self.tvDateBirth.text = ocr.dateOfBirth
                     self.tvMrz.text = ocr.mrzText
                                     
-                self.tvResult.text = "statusCode:\(ocr.statusCode) qualityScore:\(ocr.qualityScore) livenessScore:\(ocr.livenessScore)  livenessProbability:\(ocr.livenessProbability) apPaterno:\(ocr.apPaterno) apMaterno:\(ocr.apMaterno) placeBirth:\(ocr.placeOfBirth) DateOfIssue:\(ocr.dateOfIssue) registraduriaName:\(ocr.zyRegistraduria?.registraduriaName) registraduriaNuDocu:\(ocr.zyRegistraduria?.registraduriaDocumentNumber) tipo:\(ocr.typeDoc?.rawValue)   nacionalidad:\(ocr.nationality) documentNumber:\(ocr.documentNumber)"
+                self.tvResult.text = "statusCode:\(ocr.statusCode) qualityScore:\(ocr.qualityScore) livenessScore:\(ocr.livenessScore)  livenessProbability:\(ocr.livenessProbability) apPaterno:\(ocr.apPaterno) apMaterno:\(ocr.apMaterno) placeBirth:\(ocr.placeOfBirth) DateOfIssue:\(ocr.dateOfIssue) registraduriaName:\(ocr.zyRegistraduria?.registraduriaName) registraduriaNuDocu:\(ocr.zyRegistraduria?.registraduriaDocumentNumber) typeDoc:\(ocr.typeDoc)  typeDocDescription:\(ocr.typeDocDescription)   nacionalidad:\(ocr.nationality) documentNumber:\(ocr.documentNumber)"
                 
                 print("\(response.zyBecomeOcr)")
 
