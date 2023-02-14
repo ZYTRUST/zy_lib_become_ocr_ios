@@ -50,7 +50,7 @@ TODO: Add long description of the pod here.
   # s.dependency 'AFNetworking', '~> 2.3'
   #s.dependency 'PPBlinkID', '~> 5.20.0'
   #s.dependency 'Microblink', '~> 1.1'
-  s.dependency 'PPBlinkID', '6.1.0'
+  s.dependency 'PPBlinkID', '6.0.0'
   s.dependency 'Alamofire'
   s.dependency 'BecomeDigitalV', '~> 2.0'
   
