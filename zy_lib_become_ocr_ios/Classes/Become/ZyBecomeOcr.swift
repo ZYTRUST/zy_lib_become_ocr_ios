@@ -29,16 +29,44 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         self.request = request
         self.callback = completion
         var  nameStringFile = request.stringTextName ?? "zyLocalizable"
-        let bdivConfig = BDIVConfig(ItFirstTransaction: true,
-                                    token: request.token!,
-                                    contractId: request.contractId!,
-                                    userId: request.userId! ,
-                                    customLocalizationFileName: nameStringFile )
         
-        print("bdivConfig \(String(describing: bdivConfig))")
+        switch request.becomePais?.uppercased() {
+        case "PE":
+            let bdivConfig = BDIVConfig(isFirstTransaction: true,
+                                        enableRecognitionModeFilter: true,
+                                        token: request.token!,
+                                        contractId: request.contractId!,
+                                        userId: request.userId! ,
+                                        customLocalizationFileName: nameStringFile )
+            
+            print("bdivConfig \(String(describing: bdivConfig))")
+            
+            BDIVCallBack.sharedInstance.delegate = self
+            BDIVCallBack.sharedInstance.register(bdivConfig: bdivConfig)
+            break
+            
+        case "CO":
+            let bdivConfig = BDIVConfig(isFirstTransaction: true,
+                                        enableRecognitionModeFilter: false,
+                                        token: request.token!,
+                                        contractId: request.contractId!,
+                                        userId: request.userId! ,
+                                        customLocalizationFileName: nameStringFile )
+            
+            print("bdivConfig \(String(describing: bdivConfig))")
+            
+            BDIVCallBack.sharedInstance.delegate = self
+            BDIVCallBack.sharedInstance.register(bdivConfig: bdivConfig)
+            break
+            
+        default:
+            print("===>>> DEFAULT BECOME_ERROR_DOC_PAIS_NO_SOPORTADO")
+            callback(.error(ZyLibOcrError(coError:ZyOcrErrorEnum.BECOME_ERROR_DOC_PAIS_NO_SOPORTADO.rawValue ,
+                                          deError:ZyOcrErrorEnum.BECOME_ERROR_DOC_PAIS_NO_SOPORTADO.descripcion )))
+            break
+            
+        }
         
-        BDIVCallBack.sharedInstance.delegate = self
-        BDIVCallBack.sharedInstance.register(bdivConfig: bdivConfig)
     }
     
     func enviarImagen(request:ZyOcrRequest,
@@ -46,7 +74,6 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
         
         //print(String(describing: request))
         //var bdivConfig:BDIVConfig?
-        
         self.callback = completion
         self.zyOcrResponseCapturar = zyOcrResponse
         if(request.becomePais != nil && request.becomePais != ""){
@@ -54,7 +81,7 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             switch (request.becomePais?.uppercased() ) {
             case "CO":
                 print("===>>> DOCUMENTO COLOMBIA")
-                let bdivConfigCo = BDIVConfig(ItFirstTransaction: false,
+                let bdivConfigCo = BDIVConfig(isFirstTransaction: false,
                                         token: request.token!,
                                         contractId: request.contractId!,
                                         userId: request.userId!,
@@ -70,13 +97,14 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
                 break
             case "PE":
                 print("===>>> DOCUMENTO PERU")
-                let bdivConfigPe = BDIVConfig(ItFirstTransaction: false,
+                let bdivConfigPe = BDIVConfig(isFirstTransaction: false,
                                         token: request.token!,
                                         contractId: request.contractId!,
                                         userId: request.userId!,
                                         isoAlpha2CountryCode: request.isoAlpha2CountryCode!,
                                         type: request.rawValue!,
                                         imgDataFullFront: (request.fullFrontImage!.pngData()!),
+                                        imgDataCroppetBack:  request.backImage!.pngData()! ,
                                         barcodeResultData: request.barcodeResult!)
                 BDIVCallBack.sharedInstance.delegate = self
                 BDIVCallBack.sharedInstance.register(bdivConfig: bdivConfigPe)
@@ -204,13 +232,18 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             return
         }
         
-        if(zyBecomeOcr.typeDoc != 28){
+        print("===>> tipo Documento Microblink \(String(describing: zyBecomeOcr.typeDoc))")
+        if(zyBecomeOcr.typeDoc == 28){
             print("===>> Documento no es un Documento Nacional")
             
             zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.rawValue
             zyBecomeOcr.zyRegistraduria?.deErrorRegistraduria = ZyOcrErrorEnum.BECOME_ERROR_BECOME_NOREGISTRY_DATA.descripcion
             return
         }
+        if(zyBecomeOcr.typeDoc == 6){
+            print("===>> Es un documento Nacional")
+        }
+        
         
         
         let registraduria = responseIV.registryInformation
@@ -223,53 +256,77 @@ class ZyBecomeOcr: UIViewController, BDIVDelegate {
             return
         }
         
-        print("===>> ParserData Registraduria: \(registraduria["data"] )")
+        print("===>> ParserData Registraduria: \(registraduria)")
         
         zyBecomeOcr.zyRegistraduria?.coErrorRegistraduria = ZyOcrErrorEnum.EXITO.rawValue
         zyBecomeOcr.zyRegistraduria?.deErrorRegistraduria = ZyOcrErrorEnum.EXITO.descripcion
         
-        if let dataRegistraduria = registraduria["data"] as? NSDictionary {
-            print("data Registraduria")
-            if let ageRange = dataRegistraduria["ageRange"] as? String {
-                zyBecomeOcr.zyRegistraduria?.registraduriaAgeRange = ageRange
-                
-            }
+        if let dataRegistraduria = registraduria as? NSDictionary {
+            print("===========>>>>>> data Registraduria: \(registraduria)")
             
-            if let documentNumber = dataRegistraduria["documentNumber"] as? String {
-                zyBecomeOcr.zyRegistraduria?.registraduriaDocumentNumber =  documentNumber
-                
+            if let registry_identity_id = dataRegistraduria["identity_id"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_identity_id = registry_identity_id
+                print ("======>>>> registry_identity_id: \(registry_identity_id)")
             }
-            if let emissionDate = dataRegistraduria["emissionDate"] as? String {
-                zyBecomeOcr.zyRegistraduria?.registraduriaEmissionDate =  emissionDate
-                
+            if let registry_fechaHoraConsulta = dataRegistraduria["fechaHoraConsulta"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_fechaHoraConsulta = registry_fechaHoraConsulta
+                print ("======>>>> registry_fechaHoraConsulta: \(registry_fechaHoraConsulta)")
             }
-            if let fullName = dataRegistraduria["fullName"] as? String {
-                zyBecomeOcr.zyRegistraduria?.registraduriaFullName = fullName
-                
+            if let registry_contract_id = dataRegistraduria["contract_id"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_contract_id = registry_contract_id
+                print ("======>>>> registry_contract_id: \(registry_contract_id)")
             }
-            if let gender = dataRegistraduria["gender"] as? String {
-                zyBecomeOcr.zyRegistraduria?.registraduriaGender =  gender
-                
+            if let registry_nuip = dataRegistraduria["nuip"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_nuip = registry_nuip
+                print ("======>>>> registry_nuip: \(registry_nuip)")
             }
-            if let issuePlace = dataRegistraduria["issuePlace"] as? String {
-                zyBecomeOcr.zyRegistraduria?.registraduriaIssuePlace = issuePlace
-                
+            if let registry_codError = dataRegistraduria["codError"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_codError = registry_codError
+                print ("======>>>> registry_codError: \(registry_codError)")
             }
-            if let middleName = dataRegistraduria["middleName"] as? String {
-                zyBecomeOcr.zyRegistraduria?.registraduriaMiddleName = middleName
-                
+            if let registry_primerApellido = dataRegistraduria["primerApellido"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_primerApellido = registry_primerApellido
+                print ("======>>>> registry_primerApellido: \(registry_primerApellido)")
             }
-            if let name = dataRegistraduria["name"] as? String {
-                zyBecomeOcr.zyRegistraduria?.registraduriaName =  name
-                
+            if let registry_particula = dataRegistraduria["particula"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_particula = registry_particula
+                print ("======>>>> registry_particula: \(registry_particula)")
             }
-            if let surname = dataRegistraduria["surname"] as? String {
-                zyBecomeOcr.zyRegistraduria?.registraduriaSurname =  surname
-                
+            if let registry_segundoApellido = dataRegistraduria["segundoApellido"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_segundoApellido = registry_segundoApellido
+                print ("======>>>> registry_segundoApellido: \(registry_segundoApellido)")
             }
-            if let secondSurname = dataRegistraduria["secondSurname"] as? String {
-                zyBecomeOcr.zyRegistraduria?.registraduriaSecondSurname = secondSurname
-                
+            if let registry_primerNombre = dataRegistraduria["primerNombre"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_primerNombre = registry_primerNombre
+                print ("======>>>> registry_primerNombre: \(registry_primerNombre)")
+            }
+            if let registry_segundoNombre = dataRegistraduria["segundoNombre"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_segundoNombre = registry_segundoNombre
+                print ("======>>>> registry_segundoNombre: \(registry_segundoNombre)")
+            }
+            if let registry_municipioExpedicion = dataRegistraduria["municipioExpedicion"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_municipioExpedicion = registry_municipioExpedicion
+                print ("======>>>> registry_municipioExpedicion: \(registry_municipioExpedicion)")
+            }
+            if let registry_departamentoExpedicion = dataRegistraduria["departamentoExpedicion"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_departamentoExpedicion = registry_departamentoExpedicion
+                print ("======>>>> registry_departamentoExpedicion: \(registry_departamentoExpedicion)")
+            }
+            if let registry_fechaExpedicion = dataRegistraduria["fechaExpedicion"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_fechaExpedicion = registry_fechaExpedicion
+                print ("======>>>> registry_fechaExpedicion: \(registry_fechaExpedicion)")
+            }
+            if let registry_fechaNacimiento = dataRegistraduria["fechaNacimiento"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_fechaNacimiento = registry_fechaNacimiento
+                print ("======>>>> registry_fechaNacimiento: \(registry_fechaNacimiento)")
+            }
+            if let registry_estadoCedula = dataRegistraduria["estadoCedula"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_estadoCedula = registry_estadoCedula
+                print ("======>>>> registry_estadoCedula: \(registry_estadoCedula)")
+            }
+            if let registry_descripcionEstado = dataRegistraduria["descripcionEstado"] as? String {
+                zyBecomeOcr.zyRegistraduria?.registry_descripcionEstado = registry_descripcionEstado
+                print ("======>>>> registry_descripcionEstado: \(registry_descripcionEstado)")
             }
         }
         

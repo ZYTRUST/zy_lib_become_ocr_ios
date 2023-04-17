@@ -71,8 +71,19 @@ public class ZyOcr {
             
             switch result {
             case .success(let response):
-                if validarAutenticidad{
+                let dateOfIssue = response.zyBecomeOcr.dateOfIssue ?? ""
+                if ((request.becomePais?.caseInsensitiveCompare("CO") == .orderedSame) && (request.tipoDoc.caseInsensitiveCompare("1") == .orderedSame) ){
+                    print("=====>>>Validacion Date of issue : \(dateOfIssue)")
+                    if((dateOfIssue).isEmpty){
+                        self.vc.dismiss(animated: false)
+                        completion(.error(ZyOcrError(coError: ZyOcrErrorEnum.BECOME_ERROR_REVISAR_OCR_CO_DATE_OF_ISSUE_EMPTY.rawValue,
+                                                     deError: ZyOcrErrorEnum.BECOME_ERROR_REVISAR_OCR_CO_DATE_OF_ISSUE_EMPTY.descripcion)))
+                        return;
+                    }
                     
+                }
+                
+                if validarAutenticidad{
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         var secondRequest = request
                         secondRequest.becomeNroDoc = response.zyBecomeOcr.documentNumber
@@ -88,7 +99,7 @@ public class ZyOcr {
 
                     }
                     
-                }else{
+                } else{
                     self.vc.dismiss(animated: false)
                     completion(.success(response))
                 }
@@ -110,7 +121,7 @@ public class ZyOcr {
 #if !targetEnvironment(simulator)
     public func enviar(request:ZyOcrRequest,zyOcrResponse:ZyOcrResponse?,
                        completion:@escaping CallbackOcr){
-        
+        print ("func enviar")
         guard let _ = request.userId,
               let _ = request.token,
               let _ = request.fullFrontImage,
@@ -125,11 +136,12 @@ public class ZyOcr {
         }
         
         if(request.allowLibraryLoading){
-            sv = UIViewController.displaySpinner(onView: vc.view)
+            self.sv = UIViewController.displaySpinner(onView: self.vc.view)
         }
         
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+          
+            
             self.apiOcr.enviarImagen(request: request, zyOcrResponse:zyOcrResponse)
             { (result:(ZyOcrResult<ZyOcrResponse, ZyLibOcrError>)) in
                 if(request.allowLibraryLoading){

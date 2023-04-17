@@ -28,6 +28,7 @@ public struct ZyOcrRequest {
     public var formatoFecha: String = "yyyy-MM-dd"
     public var stringTextName:String?
     public var becomePais:String?
+    public var tipoDoc = "1"
     public var becomeNroDoc:String?
     public var rawValue:Int?
     public var typeDoc:Int?
@@ -97,25 +98,22 @@ public struct ZyRegistraduria{
     public var coErrorRegistraduria:Int? 
     public var deErrorRegistraduria:String? = ""
     
-    public var registraduriaAgeRange:String? = ""
-    public var registraduriaBankAccountsCount:String? = ""
-    public var registraduriaCommercialIndustryDebtsCount:String? = ""
-    public var registraduriaDocumentNumber:String? = ""
-    public var registraduriaEmissionDate:String? = ""
-    public var registraduriaFinancialIndustryDebtsCount:String? = ""
-
-    public var registraduriaFullName:String? = ""
-    public var registraduriaGender:String? = ""
-    public var registraduriaIssuePlace:String? = ""
-    public var registraduriaName:String? = ""
-
-    public var registraduriaMiddleName:String? = ""
-    public var registraduriaSurname:String? = ""
-    public var registraduriaSecondSurname:String? = ""
-    public var registraduriaSavingAccountsCount:String? = ""
-    public var registraduriaSolidarityIndustryDebtsCount:String? = ""
-    public var registraduriaServiceIndustryDebtsCount:String? = ""
-
+    public var registry_identity_id :String? = ""
+    public var registry_fechaHoraConsulta:String? = ""
+    public var registry_contract_id:String? = ""
+    public var registry_nuip:String? = ""
+    public var registry_codError:String? = ""
+    public var registry_primerApellido:String? = ""
+    public var registry_particula:String? = ""
+    public var registry_segundoApellido:String? = ""
+    public var registry_primerNombre:String? = ""
+    public var registry_segundoNombre:String? = ""
+    public var registry_municipioExpedicion:String? = ""
+    public var registry_departamentoExpedicion:String? = ""
+    public var registry_fechaExpedicion:String? = ""
+    public var registry_fechaNacimiento:String? = ""
+    public var registry_estadoCedula:String? = ""
+    public var registry_descripcionEstado:String? = ""
     
 }
 
@@ -170,6 +168,7 @@ enum ZyOcrErrorEnum:Int {
     case BECOME_ERROR_DOC_PAIS_NO_SOPORTADO = 9814
     case BECOME_ERROR_BECOME_NOREGISTRY_DATA = 9816
     case BECOME_ERROR_REVISAR_DESCRIPCION = 9817
+    case BECOME_ERROR_REVISAR_OCR_CO_DATE_OF_ISSUE_EMPTY = 9819
 
     
     
@@ -242,7 +241,8 @@ enum ZyOcrErrorEnum:Int {
             return "\(self.rawValue):Become contractId invalido"
         case .BECOME_ERROR_REVISAR_DESCRIPCION:
             return "\(self.rawValue):error Become : Revisar Descripcion : "
-            
+        case .BECOME_ERROR_REVISAR_OCR_CO_DATE_OF_ISSUE_EMPTY:
+            return "\(self.rawValue):DateOfIssue(fecha de emision) de documento colombiano no capturado o ilegible"
         default:
             return ""
         }
