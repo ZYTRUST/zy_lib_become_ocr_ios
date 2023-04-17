@@ -52,6 +52,6 @@ TODO: Add long description of the pod here.
   s.dependency 'Microblink', '~> 1.1'
   #s.dependency 'PPBlinkID', '5.20.1'
   s.dependency 'Alamofire'
-  s.dependency 'BecomeDigitalV', '~> 2.0'
+  s.dependency 'BecomeDigitalV', '~> 3.1'
   
 end
